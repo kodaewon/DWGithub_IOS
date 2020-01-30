@@ -20,18 +20,19 @@ class MainTabBarController: UITabBarController {
 // MARK: - view init
 extension MainTabBarController {
     func initTabBar() {
-        let serchViewContoller = SearchViewController()
-        serchViewContoller.title = "Search"
+        var tabbarViewControlls: [UIViewController] = []
+        for (title, vc) in [("Search", SearchViewController()),
+                            ("Repositories", RepositoriesViewController()),
+                            ("Jandi", JandiViewController()),
+                            ("My", MyViewController())] as! [(String, UIViewController)] {
+
+                                let nc = BaseNavigationController()
+                                nc.title = title
+                                nc.setViewControllers([vc], animated: true)
+                                vc.navigationItem.title = title
+                                tabbarViewControlls.append(nc)
+        }
         
-        let repositoriesViewController = RepositoriesViewController()
-        repositoriesViewController.title = "Repositories"
-        
-        let jandiViewController = JandiViewController()
-        jandiViewController.title = "Jandi"
-        
-        let myViewController = MyViewController()
-        myViewController.title = "My"
-        
-        viewControllers = [serchViewContoller, repositoriesViewController, jandiViewController, myViewController]
+        viewControllers = tabbarViewControlls
     }
 }

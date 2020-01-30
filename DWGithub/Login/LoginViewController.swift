@@ -32,9 +32,19 @@ class LoginViewController: BaseViewController {
     // MARK: - actions
     private func loginDidTap() {
         let nc = BaseNavigationController()
-        nc.setViewControllers([GitHubLoginViewController()], animated: true)
+        let vc = GitHubLoginViewController()
+        vc.delegate = self
+        nc.setViewControllers([vc], animated: true)
         nc.modalPresentationStyle = .fullScreen
         self.present(nc, animated: true, completion: nil)
+    }
+}
+
+// MARK: - GitHubLoginViewControllerDelegate
+extension LoginViewController: GitHubLoginViewControllerDelegate {
+    func userSuccess(token: String) {
+        let vc = MainTabBarController()
+        navigationController?.setViewControllers([vc], animated: true)
     }
 }
 

@@ -8,8 +8,18 @@
 
 import UIKit
 
+import SnapKit
+
 class SearchView: UIView {
     
+    // MARK: - view properties
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return tableView
+    }()
+    
+    // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -26,6 +36,12 @@ class SearchView: UIView {
 // MARK: - setup
 extension SearchView {
     func setupViews() {
+        backgroundColor = .white
         
+        addAutoLayoutSubViews([tableView])
+        
+        tableView.snp.makeConstraints {
+            $0.left.right.top.bottom.equalToSuperview()
+        }
     }
 }

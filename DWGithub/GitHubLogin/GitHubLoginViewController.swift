@@ -12,6 +12,10 @@ import WebKit
 import RxCocoa
 import RxSwift
 
+@objc protocol GitHubLoginViewControllerDelegate {
+    @objc optional func userSuccess(token: String)
+}
+
 class GitHubLoginViewController: BaseViewController {
     
     // MARK: - view properties
@@ -20,6 +24,8 @@ class GitHubLoginViewController: BaseViewController {
     private var webView: WKWebView { return githubLoginView.webView }
     
     // MARK: - properties
+    weak var delegate: GitHubLoginViewControllerDelegate?
+    
     private let viewModel: GitHubViewModel = GitHubViewModel()
     
     private var githubLoginURL: String { return GitHubAPI.loginAuthURL +
@@ -46,34 +52,44 @@ class GitHubLoginViewController: BaseViewController {
     }
 }
 
-// MARK: - WKUIDelegate, WKNavigationDelegate
-extension GitHubLoginViewController: WKUIDelegate, WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        print("start \(webView.url?.absoluteString)")
-    }
-    
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("didStartProvisionalNavigation")
-    }
-    
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("didFail")
-    }
-    
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        decisionHandler(.allow)
-    }
-}
-
 // MARK: - bind
 extension GitHubLoginViewController {
     func bind() {
         // input
-//        webView.uiDelegate = self
-//        webView.navigationDelegate = self
         webView.load(URLRequest(url: URL(string: githubLoginURL)!))
         
         // output
+        webView.rx.decidePolicy
+            .subscribe(onNext: { (webview, action, hander) in
+                guard let urlString = webview.url?.absoluteString else {
+                    self.dismiss(animated: true) {
+                        UIAlertController.basicAlert(parentVC: self, title: "", message: "다시 시도해 주세요")
+                    }
+                    hander(.cancel)
+                    return
+                }
+                
+                if urlString.contains("https://github.com/login/oauth/authorize?client_id=") {
+                    let urlStrings = urlString.replacingOccurrences(of: "https://github.com/login/oauth/authorize?client_id=", with: "").components(separatedBy: "&")
+                    
+                    guard let token = urlStrings.first, token.count > 0 else {
+                        self.dismiss(animated: true) {
+                            UIAlertController.basicAlert(parentVC: self, title: "", message: "다시 시도해 주세요")
+                        }
+                        hander(.cancel)
+                        return
+                    }
+                    
+                    self.dismiss(animated: true) { [weak self] in
+                        self?.delegate?.userSuccess?(token: token)
+                    }
+                    hander(.cancel)
+                    return
+                }
+                
+                hander(.allow)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

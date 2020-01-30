@@ -19,7 +19,7 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        goLogin()
+        goMain()
     }
 }
 
@@ -32,6 +32,6 @@ extension SplashViewController {
     
     func goMain() {
         let vc = MainTabBarController()
-        self.navigationController?.setViewControllers([vc], animated: false)
+        navigationController?.setViewControllers([vc], animated: true)
     }
 }

@@ -17,7 +17,6 @@
 		4C45C5E623C2E20F00F74EAB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45C5E523C2E20F00F74EAB /* UIView+Extension.swift */; };
 		4C45C5E823C2E25A00F74EAB /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45C5E723C2E25A00F74EAB /* UIFont+Extension.swift */; };
 		4C45C5EA23C2E26800F74EAB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45C5E923C2E26800F74EAB /* UIColor+Extension.swift */; };
-		4C45C5F523C2F1F500F74EAB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4C45C5F423C2F1F500F74EAB /* .swiftlint.yml */; };
 		4C45C5FC23C2FCE800F74EAB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45C5FB23C2FCE800F74EAB /* SearchViewController.swift */; };
 		4C45C5FE23C2FCF700F74EAB /* RepositoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45C5FD23C2FCF700F74EAB /* RepositoriesViewController.swift */; };
 		4C45C60023C2FCFF00F74EAB /* JandiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45C5FF23C2FCFF00F74EAB /* JandiViewController.swift */; };
@@ -38,6 +37,9 @@
 		4C45E35523B07F6A00A125E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C45E35323B07F6A00A125E7 /* LaunchScreen.storyboard */; };
 		4C45E36023B07F6A00A125E7 /* DWGithubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45E35F23B07F6A00A125E7 /* DWGithubTests.swift */; };
 		4C45E36B23B07F6A00A125E7 /* DWGithubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45E36A23B07F6A00A125E7 /* DWGithubUITests.swift */; };
+		4C47400D23E2B1BE007D02AA /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C47400C23E2B1BE007D02AA /* UIAlertController+Extension.swift */; };
+		4C47401023E2D1BF007D02AA /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C47400F23E2D1BF007D02AA /* SearchTableViewCell.swift */; };
+		4C63C39023D1972C0004CCF4 /* WKWebView+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C63C38F23D1972C0004CCF4 /* WKWebView+rx.swift */; };
 		4C6B0A4A23B10A4400275077 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6B0A4923B10A4400275077 /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +71,6 @@
 		4C45C5E523C2E20F00F74EAB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		4C45C5E723C2E25A00F74EAB /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		4C45C5E923C2E26800F74EAB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		4C45C5F423C2F1F500F74EAB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4C45C5FB23C2FCE800F74EAB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4C45C5FD23C2FCF700F74EAB /* RepositoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesViewController.swift; sourceTree = "<group>"; };
 		4C45C5FF23C2FCFF00F74EAB /* JandiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JandiViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +97,9 @@
 		4C45E36623B07F6A00A125E7 /* DWGithubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DWGithubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C45E36A23B07F6A00A125E7 /* DWGithubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWGithubUITests.swift; sourceTree = "<group>"; };
 		4C45E36C23B07F6A00A125E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C47400C23E2B1BE007D02AA /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
+		4C47400F23E2D1BF007D02AA /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		4C63C38F23D1972C0004CCF4 /* WKWebView+rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+rx.swift"; sourceTree = "<group>"; };
 		4C6B0A4923B10A4400275077 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B5E58F852F5C2519E44A86ED /* libPods-DWGithub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DWGithub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD5BD01347843D0FA34CF194 /* Pods-DWGithub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DWGithub.debug.xcconfig"; path = "Target Support Files/Pods-DWGithub/Pods-DWGithub.debug.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 				4C45C5E523C2E20F00F74EAB /* UIView+Extension.swift */,
 				4C45C5E723C2E25A00F74EAB /* UIFont+Extension.swift */,
 				4C45C5E923C2E26800F74EAB /* UIColor+Extension.swift */,
+				4C63C38F23D1972C0004CCF4 /* WKWebView+rx.swift */,
+				4C47400C23E2B1BE007D02AA /* UIAlertController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -174,8 +180,9 @@
 		4C45C5F623C2F77000F74EAB /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				4C45C5FB23C2FCE800F74EAB /* SearchViewController.swift */,
+				4C47400E23E2D18A007D02AA /* Cell */,
 				4C45C60323C2FF7700F74EAB /* SearchView.swift */,
+				4C45C5FB23C2FCE800F74EAB /* SearchViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -260,7 +267,6 @@
 		4C45E33C23B07F6A00A125E7 = {
 			isa = PBXGroup;
 			children = (
-				4C45C5F423C2F1F500F74EAB /* .swiftlint.yml */,
 				4C45C5EE23C2E9B900F74EAB /* Resources */,
 				4C45E34723B07F6A00A125E7 /* DWGithub */,
 				4C45E35E23B07F6A00A125E7 /* DWGithubTests */,
@@ -321,6 +327,14 @@
 				4C45E36C23B07F6A00A125E7 /* Info.plist */,
 			);
 			path = DWGithubUITests;
+			sourceTree = "<group>";
+		};
+		4C47400E23E2D18A007D02AA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4C47400F23E2D1BF007D02AA /* SearchTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		4C6B0A4123B1082F00275077 /* Slpash */ = {
@@ -464,7 +478,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C45C5F523C2F1F500F74EAB /* .swiftlint.yml in Resources */,
 				4C45E35523B07F6A00A125E7 /* LaunchScreen.storyboard in Resources */,
 				4C45E35223B07F6A00A125E7 /* Assets.xcassets in Resources */,
 			);
@@ -562,6 +575,7 @@
 				4C41B08623C446A3001B8A0A /* GitHubViewModel.swift in Sources */,
 				4C4033CA23C3839C0058A6AA /* GitHubLoginView.swift in Sources */,
 				4C45C5FE23C2FCF700F74EAB /* RepositoriesViewController.swift in Sources */,
+				4C47401023E2D1BF007D02AA /* SearchTableViewCell.swift in Sources */,
 				4C45C60023C2FCFF00F74EAB /* JandiViewController.swift in Sources */,
 				4C45C61E23C30FDB00F74EAB /* GitHubAPI.swift in Sources */,
 				4C45C61223C30B2A00F74EAB /* BaseNavigationController.swift in Sources */,
@@ -572,7 +586,9 @@
 				4C45C61423C30B4900F74EAB /* BaseViewController.swift in Sources */,
 				4C45C60A23C2FFE300F74EAB /* MyView.swift in Sources */,
 				4C45C62523C3105F00F74EAB /* GitHubAPI+Login.swift in Sources */,
+				4C63C39023D1972C0004CCF4 /* WKWebView+rx.swift in Sources */,
 				4C45C60423C2FF7700F74EAB /* SearchView.swift in Sources */,
+				4C47400D23E2B1BE007D02AA /* UIAlertController+Extension.swift in Sources */,
 				4C45C60223C2FD0600F74EAB /* MyViewController.swift in Sources */,
 				4C45E34923B07F6A00A125E7 /* AppDelegate.swift in Sources */,
 				4C45C5E623C2E20F00F74EAB /* UIView+Extension.swift in Sources */,
@@ -746,7 +762,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R42JW2NS5S;
 				INFOPLIST_FILE = DWGithub/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -766,7 +782,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R42JW2NS5S;
 				INFOPLIST_FILE = DWGithub/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
