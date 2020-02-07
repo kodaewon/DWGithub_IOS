@@ -20,7 +20,24 @@ extension UIColor {
 
 // MARK: - App Color
 extension UIColor {
-    open class func main() -> UIColor {
-        return UIColor(red: 0, green: 0, blue: 0)
-    }
+    static var baisc: UIColor = {
+        if #available(iOS 13.0, *) {
+            return .green
+        }
+        return .green
+    }()
+    
+    static var background: UIColor = {
+        if #available(iOS 13.0, *) {
+            return .systemBackground
+        }
+        return .white
+    }()
+    
+    static var text: UIColor = {
+        if #available(iOS 13.0, *) {
+            return .label
+        }
+        return .black
+    }()
 }

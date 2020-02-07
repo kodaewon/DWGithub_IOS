@@ -16,39 +16,63 @@ class SearchTableViewCell: UITableViewCell {
     let repoIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-//        imageView.image = UIImageAsse
+        imageView.backgroundColor = .red
         return imageView
     }()
     
     let fullNameLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .left
+        label.numberOfLines = 1
+        label.lineBreakMode = .byTruncatingTail
+        label.textColor = .text
+        label.text = ""
         return label
     }()
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .left
+        label.numberOfLines = 3
+        label.lineBreakMode = .byTruncatingTail
+        label.textColor = .text
+        label.text = ""
         return label
     }()
     
-    let startImageView: UIImageView = {
+    let starImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.backgroundColor = .blue
         return imageView
     }()
     
-    let stargazersCountLabel: UILabel = {
+    let starGazersCountLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .left
+        label.numberOfLines = 1
+        label.lineBreakMode = .byWordWrapping
+        label.textColor = .text
+        label.text = ""
         return label
     }()
     
     let languageLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .left
+        label.numberOfLines = 1
+        label.lineBreakMode = .byWordWrapping
+        label.text = ""
         return label
     }()
+    
+    // MARK: - properties
+    static let identifier = "SearchTableViewCell"
     
     // MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        setupViews()
     }
     
     required init?(coder: NSCoder) {
@@ -59,7 +83,7 @@ class SearchTableViewCell: UITableViewCell {
 // MARK: - setup
 extension SearchTableViewCell {
     func setupViews() {
-        addAutoLayoutSubViews([repoIconImageView, fullNameLabel, descriptionLabel, startImageView, stargazersCountLabel, languageLabel])
+        addAutoLayoutSubViews([repoIconImageView, fullNameLabel, descriptionLabel, starImageView, starGazersCountLabel, languageLabel])
         
         repoIconImageView.snp.makeConstraints {
             $0.width.height.equalTo(24)
@@ -68,8 +92,33 @@ extension SearchTableViewCell {
         }
         
         fullNameLabel.snp.makeConstraints {
-            $0.left.equalTo(repoIconImageView.snp.right).offset(-8)
+            $0.left.equalTo(repoIconImageView.snp.right).offset(8)
+            $0.right.equalToSuperview().offset(-8)
             $0.centerY.equalTo(repoIconImageView.snp.centerY)
+        }
+        
+        descriptionLabel.snp.makeConstraints {
+            $0.height.greaterThanOrEqualTo(16)
+            $0.left.equalTo(fullNameLabel.snp.left)
+            $0.right.equalTo(fullNameLabel.snp.right)
+            $0.top.equalTo(repoIconImageView.snp.bottom).offset(8)
+        }
+        
+        starImageView.snp.makeConstraints {
+            $0.width.height.equalTo(18)
+            $0.left.equalTo(descriptionLabel.snp.left)
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(8)
+            $0.bottom.equalToSuperview().offset(-8)
+        }
+        
+        starGazersCountLabel.snp.makeConstraints {
+            $0.left.equalTo(starImageView.snp.right).offset(4)
+            $0.centerY.equalTo(starImageView.snp.centerY)
+        }
+        
+        languageLabel.snp.makeConstraints {
+            $0.left.equalTo(starGazersCountLabel.snp.right).offset(8)
+            $0.centerY.equalTo(starGazersCountLabel.snp.centerY)
         }
     }
 }

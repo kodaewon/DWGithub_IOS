@@ -8,21 +8,24 @@
 
 import UIKit
 
+import Moya
+
 import RxCocoa
 import RxSwift
 
-class SearchViewController: UIViewController {
+class SearchViewController: BaseViewController {
     
     // MARK: - view properties
+    private let searchViewController = UISearchController(searchResultsController: nil)
+    
     private var searchView: SearchView { return view as! SearchView }
     
     private var tableView: UITableView { return searchView.tableView }
     
-    private let searchViewController = UISearchController(searchResultsController: nil)
-    
     // MARK: - properties
+    let viewModel = SearchViewModel()
     
-    var disposBag = DisposeBag()
+    var page: Int = 1
     
     override func loadView() {
         view = SearchView()
@@ -30,30 +33,18 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(false, animated: false)
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
-        if #available(iOS 13.0, *) {
-            navigationController?.navigationBar.largeContentTitle = "Search"
-        }
-        
-        navigationItem.searchController = searchViewController
-        navigationItem.hidesSearchBarWhenScrolling = false
+        setupNavigation()
         
         searchViewController.searchResultsUpdater = self
         searchViewController.hidesNavigationBarDuringPresentation = true
         searchViewController.obscuresBackgroundDuringPresentation = false
-        searchViewController.delegate = self
         
+        binds()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        disposBag = DisposeBag()
     }
 }
 
@@ -64,21 +55,66 @@ extension SearchViewController: UISearchResultsUpdating {
     }
 }
 
-// MARK: - UISearchControllerDelegate
-extension SearchViewController: UISearchControllerDelegate {
-    
-}
-
 // MARK: - bind
 extension SearchViewController {
     func binds() {
+// FIXME: - 당겨서 새로고침시에 끝나면 네비게이션바가 라지로 되지 않음
+//        let reload = tableView.refreshControl?.rx
+//            .controlEvent(.valueChanged)
+//            .map { _ in () } ?? Observable.just(())
+//
+//        Observable.merge([reload])
+//            .flatMap { Observable<(q: String, page: Int)>.just((q: "a", page: 1)) }
+//            .bind(to: viewModel.fetchRepositoies)
+//            .disposed(by: disposeBag)
         
+        // Input
+        Observable.just(())
+            .bind(to: viewModel.fetchRepositoies)
+            .disposed(by: disposeBag)
+        
+        searchViewController.searchBar.rx.searchButtonClicked
+            .map { self.searchViewController.searchBar.text ?? "" }
+            .bind(to: viewModel.searchTextChange )
+            .disposed(by: disposeBag)
+        
+        tableView.rx.willDisplayCell
+            .map { $0.indexPath }
+            .bind(to: viewModel.tableViewWillDisplayCell)
+            .disposed(by: disposeBag)
+        
+        // Output
+        viewModel.actived
+            .subscribe(onNext: { actived in
+                if actived {
+                    self.tableView.refreshControl?.endRefreshing()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.allRepositories
+            .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { index, item, cell in
+                cell.fullNameLabel.text = item.full_name
+                cell.descriptionLabel.text = item.name
+                cell.starGazersCountLabel.text = "\(item.stargazers_count)"
+                cell.languageLabel.text = item.language
+            }
+            .disposed(by: disposeBag)
     }
 }
 
-// MARK: - init
+// MARK: - setup
 extension SearchViewController {
-    func naviInit() {
+    func setupNavigation() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.largeContentTitle = "Search"
+        }
+        
+        navigationItem.searchController = searchViewController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 }

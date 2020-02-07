@@ -3,10 +3,11 @@
 
 target 'DWGithub' do
 
-	pod 'Alamofire'
+	pod 'Moya'
 
-	pod 'RxSwift'
 	pod 'RxCocoa'
+	pod 'RxSwift'
+        pod 'RxViewController'
   
 	pod 'Then'
 	pod 'SnapKit'

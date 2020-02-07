@@ -6,7 +6,15 @@ name: LicensePlist, nameSpecified:
 body: MIT License
 
 Copyrig…
-version: 2.11.2
+version: 2.12.0
+
+name: Moya, nameSpecified: 
+body: The MIT License (MIT…
+version: 13.0.1
+
+name: Result, nameSpecified: 
+body: The MIT License (MIT…
+version: 4.1.0
 
 name: RxCocoa, nameSpecified: 
 body: **The MIT License**
@@ -23,13 +31,17 @@ body: **The MIT License**
 …
 version: 5.0.1
 
+name: RxViewController, nameSpecified: 
+body: The MIT License (MIT…
+version: 1.0.0
+
 name: SnapKit, nameSpecified: 
 body: Copyright (c) 2011-P…
 version: 5.0.1
 
 name: SwiftLint, nameSpecified: 
 body: The MIT License (MIT…
-version: 0.38.1
+version: 0.38.2
 
 name: Then, nameSpecified: 
 body: The MIT License (MIT…
@@ -37,4 +49,4 @@ version: 2.6.0
 
 add-version-numbers: false
 
-LicensePlist Version: 2.9.0
+LicensePlist Version: 2.12.0
