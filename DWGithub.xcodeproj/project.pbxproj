@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		19D3BEC29DD17B20D9848797 /* libPods-DWGithub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E58F852F5C2519E44A86ED /* libPods-DWGithub.a */; };
 		4C3C961423EBE36E0001852E /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C961323EBE36E0001852E /* GitHubService.swift */; };
-		4C3C961623EBEB890001852E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C961523EBEB890001852E /* Networking.swift */; };
 		4C3F670B23EAAFDD001E33FC /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F670A23EAAFDD001E33FC /* Repositories.swift */; };
 		4C3F670D23EABBCB001E33FC /* RepositoriesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F670C23EABBCB001E33FC /* RepositoriesItem.swift */; };
 		4C4033C823C3838F0058A6AA /* GitHubLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4033C723C3838F0058A6AA /* GitHubLoginViewController.swift */; };
@@ -70,7 +69,6 @@
 /* Begin PBXFileReference section */
 		0E11CDEC755449D416D6E039 /* Pods-DWGithub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DWGithub.release.xcconfig"; path = "Target Support Files/Pods-DWGithub/Pods-DWGithub.release.xcconfig"; sourceTree = "<group>"; };
 		4C3C961323EBE36E0001852E /* GitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
-		4C3C961523EBEB890001852E /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		4C3F670A23EAAFDD001E33FC /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
 		4C3F670C23EABBCB001E33FC /* RepositoriesItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesItem.swift; sourceTree = "<group>"; };
 		4C4033C723C3838F0058A6AA /* GitHubLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubLoginViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 		4C3C961223EBE35C0001852E /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				4C3C961523EBEB890001852E /* Networking.swift */,
 				4C3C961323EBE36E0001852E /* GitHubService.swift */,
 			);
 			path = Service;
@@ -601,7 +598,6 @@
 				4C45C5E023C2E0BD00F74EAB /* SplashViewController.swift in Sources */,
 				4C45C60E23C3071A00F74EAB /* LoginViewController.swift in Sources */,
 				4C45C60623C2FFB500F74EAB /* RepositoriesView.swift in Sources */,
-				4C3C961623EBEB890001852E /* Networking.swift in Sources */,
 				4C6DB25823EAA41D007F15E5 /* SearchViewModel.swift in Sources */,
 				4C45C61C23C30FC400F74EAB /* BaseAPI.swift in Sources */,
 				4C41B08623C446A3001B8A0A /* GitHubViewModel.swift in Sources */,

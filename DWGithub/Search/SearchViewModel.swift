@@ -35,7 +35,7 @@ class SearchViewModel: SearchViewModelType {
         let searchText = PublishSubject<String>()
         let willDisplayCell = PublishSubject<IndexPath>()
         
-        let model = BehaviorSubject<(model: SearchModel, inc: Int)>(value: (model: SearchModel(), inc: 0))
+        let search = BehaviorSubject<(model: SearchModel, inc: Int)>(value: (model: SearchModel(), inc: 0))
         let activing = BehaviorSubject<Bool>(value: false)
         let allRepo = BehaviorSubject<[RepositoriesItem]>(value: [])
             
@@ -44,29 +44,49 @@ class SearchViewModel: SearchViewModelType {
         tableViewWillDisplayCell = willDisplayCell.asObserver()
         
         fetching
-            .do(onNext: { _ in activing.onNext(false) })
-            .flatMap { domain.repositories(q: "", page: 1) }
-            .do(onNext: { _ in activing.onNext(true) })
-            .map { (model: SearchModel(q: "", page: 1, items: $0.items), inc : 0) }
-            .subscribe(onNext: model.onNext)
+            .map { (model: SearchModel(q: "", page: 1, items: []), inc : 0) }
+            .subscribe(onNext: search.onNext)
             .disposed(by: disposeBag)
         
         searchText
             .distinctUntilChanged()
-            .do(onNext: { _ in activing.onNext(false) })
-            .flatMap { domain.repositories(q: $0, page: 1) }
-            .do(onNext: { _ in activing.onNext(true) })
-            .map { (model: SearchModel(q: "", page: 1, items: $0.items), inc : 0) }
-            .subscribe(onNext: model.onNext)
+            .map { (model: SearchModel(q: $0, page: 1, items: []), inc : 0) }
+            .subscribe(onNext: search.onNext)
             .disposed(by: disposeBag)
-            
+
+        willDisplayCell
+            .withLatestFrom(allRepo) { (update, origin) -> Any in
+                print("origin \(origin.count) update \(update.row)")
+                if (origin.count - 2) < update.row {
+                    return true
+                }
+                return false
+            }
+            .withLatestFrom(search) { (update, origin) -> Any in
+                if let updateVale = update as? Bool, updateVale {
+                    return (model: origin.model, inc: 1)
+                }
+                return false
+            }
+            .subscribe(onNext: { data in
+                if let model = data as? (model: SearchModel, inc: Int) {
+                    print("mode = \(model)")
+                    search.onNext(model)
+                }
+            })
+            .disposed(by: disposeBag)
         
-        searchModel = model.asObserver()
+        searchModel = search.asObserver()
         actived = activing.asObservable()
         allRepositories = allRepo.asObserver()
-    
-        model
-            .map { $0.model.items }
+        
+        search
+            .do(onNext: { _ in activing.onNext(false) })
+            .flatMap { domain.repositories(q: $0.model.q, page: $0.model.page + $0.inc) }
+            .do(onNext: { _ in activing.onNext(true) })
+            .withLatestFrom(allRepo) { (update, origin) -> [RepositoriesItem] in
+                return origin + update.items
+            }
             .subscribe(onNext: allRepo.onNext)
             .disposed(by: disposeBag)
     }
