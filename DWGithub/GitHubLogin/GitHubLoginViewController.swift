@@ -13,7 +13,7 @@ import RxCocoa
 import RxSwift
 
 @objc protocol GitHubLoginViewControllerDelegate {
-    @objc optional func userSuccess(token: String)
+    @objc optional func userSuccess()
 }
 
 class GitHubLoginViewController: BaseViewController {
@@ -61,7 +61,8 @@ extension GitHubLoginViewController {
         // output
         webView.rx.decidePolicy
             .subscribe(onNext: { (webview, action, hander) in
-                guard let urlString = webview.url?.absoluteString else {
+                guard let url = webview.url?.absoluteString,
+                let urlString = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                     self.dismiss(animated: true) {
                         UIAlertController.basicAlert(parentVC: self, title: "", message: "다시 시도해 주세요")
                     }
@@ -69,10 +70,12 @@ extension GitHubLoginViewController {
                     return
                 }
                 
-                if urlString.contains("https://github.com/login/oauth/authorize?client_id=") {
-                    let urlStrings = urlString.replacingOccurrences(of: "https://github.com/login/oauth/authorize?client_id=", with: "").components(separatedBy: "&")
+                print("urlString = \(urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))")
+                
+                if urlString.contains("https://github.com/kodaewon?code=") {
+                    let urlStrings = urlString.replacingOccurrences(of: "https://github.com/kodaewon?code=", with: "").components(separatedBy: "&")
                     
-                    guard let token = urlStrings.first, token.count > 0 else {
+                    guard let code = urlStrings.first, code.count > 0 else {
                         self.dismiss(animated: true) {
                             UIAlertController.basicAlert(parentVC: self, title: "", message: "다시 시도해 주세요")
                         }
@@ -80,9 +83,34 @@ extension GitHubLoginViewController {
                         return
                     }
                     
-                    self.dismiss(animated: true) { [weak self] in
-                        self?.delegate?.userSuccess?(token: token)
+                    GitHubAPI.getToken(code: code) { (token) in
+                        guard let token = token else {
+                            self.dismiss(animated: true) {
+                                UIAlertController.basicAlert(parentVC: self, title: "", message: "다시 시도해 주세요")
+                            }
+                            return
+                        }
+                        
+                        GitHubAPI.userInfo(token: token) { (userInfo) in
+                            guard let userInfo = userInfo else {
+                                self.dismiss(animated: true) {
+                                    UIAlertController.basicAlert(parentVC: self, title: "", message: "다시 시도해 주세요")
+                                }
+                                return
+                            }
+                            
+                            UserDefaults.standard.set(token, forKey: USER_TOKEN)
+                            UserDefaults.standard.synchronize()
+                            
+                            UserInfo.shared = userInfo
+                            UserInfo.shared.token = token
+                            
+                            self.dismiss(animated: true) { [weak self] in
+                                self?.delegate?.userSuccess?()
+                            }
+                        }
                     }
+                    
                     hander(.cancel)
                     return
                 }

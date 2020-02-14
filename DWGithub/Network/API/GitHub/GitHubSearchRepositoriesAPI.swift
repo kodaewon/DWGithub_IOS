@@ -1,5 +1,5 @@
 //
-//  GitHubAPI+Repositories.swift
+//  GitHubSearchRepositoriesAPI.swift
 //  DWGithub
 //
 //  Created by 고대원 on 2020/02/05.
@@ -8,11 +8,11 @@
 
 import Moya
 
-enum GitHubRepositoriesAPI {
+enum GitHubSearchRepositoriesAPI {
     case search(q: String, page: Int)
 }
 
-extension GitHubRepositoriesAPI: TargetType {
+extension GitHubSearchRepositoriesAPI: TargetType {
     var baseURL: URL {
         return URL(string: "https://api.github.com")!
     }

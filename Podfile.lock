@@ -1,6 +1,10 @@
 PODS:
   - Alamofire (4.9.1)
-  - LicensePlist (2.12.0)
+  - Differentiator (4.0.1)
+  - Kingfisher (5.13.0):
+    - Kingfisher/Core (= 5.13.0)
+  - Kingfisher/Core (5.13.0)
+  - LicensePlist (2.13.0)
   - Moya (13.0.1):
     - Moya/Core (= 13.0.1)
   - Moya/Core (13.0.1):
@@ -10,6 +14,10 @@ PODS:
   - RxCocoa (5.0.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxRelay (5.0.1):
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
@@ -17,13 +25,15 @@ PODS:
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
   - SnapKit (5.0.1)
-  - SwiftLint (0.38.2)
+  - SwiftLint (0.39.1)
   - Then (2.6.0)
 
 DEPENDENCIES:
+  - Kingfisher
   - LicensePlist
   - Moya
   - RxCocoa
+  - RxDataSources
   - RxSwift
   - RxViewController
   - SnapKit
@@ -33,10 +43,13 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Differentiator
+    - Kingfisher
     - LicensePlist
     - Moya
     - Result
     - RxCocoa
+    - RxDataSources
     - RxRelay
     - RxSwift
     - RxViewController
@@ -46,17 +59,20 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  LicensePlist: 58cf605015acb4397095c8e7115c786d37ad8fbc
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  Kingfisher: 0d334cada987fcddbe9b5cec516406e1ee9d4748
+  LicensePlist: a5395002c74b45c38bb8661374f5608534f0f5a7
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
 
-PODFILE CHECKSUM: 023933a4d0bf1d5bcc28c44d8c6370c34123cf3f
+PODFILE CHECKSUM: 956e0e03d8a69b218e319a31bfd98a32120fd87d
 
 COCOAPODS: 1.8.4

@@ -56,7 +56,6 @@ class SearchViewModel: SearchViewModelType {
 
         willDisplayCell
             .withLatestFrom(allRepo) { (update, origin) -> Any in
-                print("origin \(origin.count) update \(update.row)")
                 if (origin.count - 2) < update.row {
                     return true
                 }
@@ -70,7 +69,6 @@ class SearchViewModel: SearchViewModelType {
             }
             .subscribe(onNext: { data in
                 if let model = data as? (model: SearchModel, inc: Int) {
-                    print("mode = \(model)")
                     search.onNext(model)
                 }
             })

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 import RxCocoa
 import RxSwift
@@ -42,7 +43,7 @@ class LoginViewController: BaseViewController {
 
 // MARK: - GitHubLoginViewControllerDelegate
 extension LoginViewController: GitHubLoginViewControllerDelegate {
-    func userSuccess(token: String) {
+    func userSuccess() {
         let vc = MainTabBarController()
         navigationController?.setViewControllers([vc], animated: true)
     }

@@ -11,16 +11,59 @@ import RxSwift
 
 protocol GitHubServiceType {
     func repositories(q: String, page: Int) -> Observable<Repositories>
+    func userRepositories(username: String) -> Observable<[RepositoriesItem]>
 }
 
 final class GitHubService: GitHubServiceType {
     func repositories(q: String, page: Int) -> Observable<Repositories> {
         return Observable<Repositories>.create { observable in
-            let provider = MoyaProvider<GitHubRepositoriesAPI>()
+            let provider = MoyaProvider<GitHubSearchRepositoriesAPI>()
             provider.request(.search(q: q, page: page)) { (result) in
                 switch result {
                 case .success(let response):
                     guard let data = try? JSONDecoder().decode(Repositories.self, from: response.data) else {
+                        observable.onError(NSError(domain: "", code: 1, userInfo: nil))
+                        return
+                    }
+                    
+                    observable.onNext(data)
+                case .failure(_):
+                    observable.onError(NSError(domain: "", code: 1, userInfo: nil))
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func userRepositories(username: String) -> Observable<[RepositoriesItem]> {
+        return Observable<[RepositoriesItem]>.create { observable in
+            let provider = MoyaProvider<GitHubUserRepositoriesAPI>()
+            provider.request(.search(username: username)) { (result) in
+                switch result {
+                case .success(let response):
+                    guard let data = try? JSONDecoder().decode([RepositoriesItem].self, from: response.data) else {
+                        observable.onError(NSError(domain: "", code: 1, userInfo: nil))
+                        return
+                    }
+                    
+                    observable.onNext(data)
+                case .failure(_):
+                    observable.onError(NSError(domain: "", code: 1, userInfo: nil))
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func authRepositories(token: String) -> Observable<[RepositoriesItem]> {
+        return Observable<[RepositoriesItem]>.create { observable in
+            let provider = MoyaProvider<GitHubUserRepositoriesAPI>()
+            provider.request(.repo(token: token)) { (result) in
+                switch result {
+                case .success(let response):
+                    guard let data = try? JSONDecoder().decode([RepositoriesItem].self, from: response.data) else {
                         observable.onError(NSError(domain: "", code: 1, userInfo: nil))
                         return
                     }

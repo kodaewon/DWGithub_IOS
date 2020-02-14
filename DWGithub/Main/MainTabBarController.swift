@@ -24,7 +24,7 @@ extension MainTabBarController {
         for (title, vc) in [("Search", SearchViewController()),
                             ("Repositories", RepositoriesViewController()),
                             ("Jandi", JandiViewController()),
-                            ("My", MyViewController())] as! [(String, UIViewController)] {
+                            ("Setting", SettingViewController())] as! [(String, UIViewController)] {
 
                                 let nc = BaseNavigationController()
                                 nc.title = title

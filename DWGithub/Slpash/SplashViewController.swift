@@ -19,7 +19,19 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        goMain()
+        if let token = UserDefaults.standard.object(forKey: USER_TOKEN) as? String {
+            GitHubAPI.userInfo(token: token) { (userInfo) in
+                guard let userInfo = userInfo else {
+                    self.goLogin()
+                    return
+                }
+                
+                UserInfo.shared = userInfo
+                self.goMain()
+            }
+        } else {
+            self.goLogin()
+        }
     }
 }
 

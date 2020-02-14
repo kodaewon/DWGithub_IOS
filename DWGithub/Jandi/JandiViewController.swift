@@ -21,3 +21,21 @@ class JandiViewController: UIViewController {
 
     }
 }
+
+// MARK: - setup
+extension JandiViewController {
+    func setupNavigation() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        navigationController?.navigationBar.barTintColor = .background
+        
+        navigationItem.title = "Jandi"
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        
+        if #available(iOS 13.0, *) {
+            navigationController?.navigationBar.largeContentTitle = "Jandi"
+        }
+    }
+}

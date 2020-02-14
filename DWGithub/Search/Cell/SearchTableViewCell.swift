@@ -72,6 +72,8 @@ class SearchTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.selectionStyle = .none
+        
         setupViews()
     }
     
@@ -87,7 +89,7 @@ extension SearchTableViewCell {
         
         repoIconImageView.snp.makeConstraints {
             $0.width.height.equalTo(24)
-            $0.top.equalToSuperview().offset(8)
+            $0.top.equalToSuperview().offset(12)
             $0.left.equalToSuperview().offset(16)
         }
         
@@ -108,7 +110,7 @@ extension SearchTableViewCell {
             $0.width.height.equalTo(18)
             $0.left.equalTo(descriptionLabel.snp.left)
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(8)
-            $0.bottom.equalToSuperview().offset(-8)
+            $0.bottom.equalToSuperview().offset(-12)
         }
         
         starGazersCountLabel.snp.makeConstraints {

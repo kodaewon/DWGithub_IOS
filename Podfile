@@ -2,18 +2,19 @@
 # platform :ios, '9.0'
 
 target 'DWGithub' do
-
-	pod 'Moya'
-
-	pod 'RxCocoa'
-	pod 'RxSwift'
-        pod 'RxViewController'
-  
-	pod 'Then'
-	pod 'SnapKit'
-  
-  pod 'SwiftLint'
+  pod 'Kingfisher'
   
   pod 'LicensePlist'
 
+  pod 'Moya'
+
+  pod 'RxCocoa'
+  pod 'RxDataSources'
+  pod 'RxSwift'
+  pod 'RxViewController'
+  
+  pod 'SnapKit'
+  pod 'SwiftLint'
+
+  pod 'Then'
 end

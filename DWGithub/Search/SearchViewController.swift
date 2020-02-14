@@ -27,6 +27,7 @@ class SearchViewController: BaseViewController {
     
     var page: Int = 1
     
+    // MARK: - life cycle
     override func loadView() {
         view = SearchView()
     }
@@ -34,17 +35,13 @@ class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigation()
-        
         searchViewController.searchResultsUpdater = self
         searchViewController.hidesNavigationBarDuringPresentation = true
         searchViewController.obscuresBackgroundDuringPresentation = false
         
+        setupNavigation()
+        
         binds()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 }
 
@@ -93,6 +90,14 @@ extension SearchViewController {
             .disposed(by: disposeBag)
         
         viewModel.allRepositories
+            .subscribe(onNext: { repos in
+                if !repos.isEmpty {
+                    self.tableView.isHidden = false
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.allRepositories
             .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { index, item, cell in
                 cell.fullNameLabel.text = item.full_name
                 cell.descriptionLabel.text = item.name
@@ -108,13 +113,16 @@ extension SearchViewController {
     func setupNavigation() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         
+        navigationController?.navigationBar.barTintColor = .background
+        
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        
         if #available(iOS 13.0, *) {
             navigationController?.navigationBar.largeContentTitle = "Search"
         }
         
         navigationItem.searchController = searchViewController
-        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
 }

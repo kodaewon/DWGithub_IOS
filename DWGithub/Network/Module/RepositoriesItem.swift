@@ -10,25 +10,40 @@ struct RepositoriesItem: Codable {
     var id: Int
     var name: String
     var full_name: String
+    var isPrivate: Bool
+    var description: String
     var language: String
     var stargazers_count: Int
+    var fork: Bool
+    var forks: Int
+    var forks_url: String
     
-    init() {
-        id = 0
-        name = ""
-        full_name = ""
-        language = ""
-        stargazers_count = 0
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case full_name = "full_name"
+        case isPrivate = "private"
+        case description = "description"
+        case language = "language"
+        case stargazers_count = "stargazers_count"
+        case fork = "fork"
+        case forks = "forks"
+        case forks_url = "forks_url"
     }
     
     init(from decoder: Decoder) throws {
-       let values = try decoder.container(keyedBy: CodingKeys.self)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
        
-       id = (try? values.decode(Int.self, forKey: .id)) ?? 0
-       name = (try? values.decode(String.self, forKey: .name)) ?? ""
-       full_name = (try? values.decode(String.self, forKey: .full_name)) ?? ""
-       language = (try? values.decode(String.self, forKey: .language)) ?? ""
-       stargazers_count = (try? values.decode(Int.self, forKey: .stargazers_count)) ?? 0
+        id = (try? values.decode(Int.self, forKey: .id)) ?? 0
+        name = (try? values.decode(String.self, forKey: .name)) ?? ""
+        full_name = (try? values.decode(String.self, forKey: .full_name)) ?? ""
+        isPrivate = (try? values.decode(Bool.self, forKey: .isPrivate)) ?? false
+        description = (try? values.decode(String.self, forKey: .description)) ?? ""
+        language = (try? values.decode(String.self, forKey: .language)) ?? ""
+        stargazers_count = (try? values.decode(Int.self, forKey: .stargazers_count)) ?? 0
+        fork = (try? values.decode(Bool.self, forKey: .fork)) ?? false
+        forks = (try? values.decode(Int.self, forKey: .forks)) ?? 0
+        forks_url = (try? values.decode(String.self, forKey: .forks_url)) ?? ""
     }
 }
 
