@@ -21,6 +21,7 @@ class RepositoriesTableViewCell: UITableViewCell {
     let nameLabel = UILabel().then {
         $0.numberOfLines = 2
         $0.lineBreakMode = .byWordWrapping
+        $0.font = .bold(21)
         $0.textColor = .text
         $0.text = ""
     }
@@ -29,16 +30,19 @@ class RepositoriesTableViewCell: UITableViewCell {
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.black.cgColor
         $0.layer.cornerRadius = 5
+        $0.layer.masksToBounds = true
         $0.backgroundColor = .white
         $0.numberOfLines = 1
         $0.lineBreakMode = .byWordWrapping
-        $0.textColor = .text
+        $0.font = .light(13)
+        $0.textColor = .black
         $0.text = ""
     }
     
     let forkLabel = UILabel().then {
         $0.numberOfLines = 0
         $0.lineBreakMode = .byWordWrapping
+        $0.font = .regular(15)
         $0.textColor = .text
         $0.text = ""
     }
@@ -46,26 +50,34 @@ class RepositoriesTableViewCell: UITableViewCell {
     let descriptionLabel = UILabel().then {
         $0.numberOfLines = 1
         $0.lineBreakMode = .byWordWrapping
+        $0.font = .regular(17)
         $0.textColor = .text
         $0.text = ""
     }
     
     let starImageView = UIImageView().then {
-        $0.backgroundColor = .blue
+        $0.image = UIImage(named: "star")
     }
     
     let starGazersCountLabel = UILabel().then {
         $0.textAlignment = .left
         $0.numberOfLines = 1
         $0.lineBreakMode = .byWordWrapping
+        $0.font = .regular(13)
         $0.textColor = .text
         $0.text = ""
+    }
+    
+    let languageImageView = UIImageView().then {
+        $0.image = UIImage(named: "search")
     }
     
     let languageLabel = UILabel().then {
         $0.textAlignment = .left
         $0.numberOfLines = 1
         $0.lineBreakMode = .byWordWrapping
+        $0.font = .regular(13)
+        $0.textColor = .text
         $0.text = ""
     }
     
@@ -89,7 +101,7 @@ class RepositoriesTableViewCell: UITableViewCell {
 // MARK: - setup
 extension RepositoriesTableViewCell {
     func setupViews() {
-        addAutoLayoutSubViews([verticalStackView, nameLabel, privateLabel, forkLabel, descriptionLabel, starImageView, starGazersCountLabel, languageLabel])
+        addAutoLayoutSubViews([verticalStackView, nameLabel, privateLabel, forkLabel, descriptionLabel, starImageView, starGazersCountLabel, languageImageView, languageLabel])
 
         nameLabel.snp.makeConstraints {
             $0.height.equalTo(32)
@@ -98,6 +110,7 @@ extension RepositoriesTableViewCell {
         }
 
         privateLabel.snp.makeConstraints {
+            $0.height.equalTo(21)
             $0.left.equalTo(nameLabel.snp.right).offset(8)
 //            $0.right.equalToSuperview().offset(16)
             $0.centerY.equalTo(nameLabel.snp.centerY)
@@ -106,13 +119,13 @@ extension RepositoriesTableViewCell {
         forkLabel.snp.makeConstraints {
             $0.left.equalTo(nameLabel.snp.left)
             $0.right.equalToSuperview().offset(-16)
-            $0.top.equalTo(nameLabel.snp.bottom).offset(4)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(6)
         }
         
         descriptionLabel.snp.makeConstraints {
             $0.left.equalTo(nameLabel.snp.left)
             $0.right.equalToSuperview().offset(16)
-            $0.top.equalTo(forkLabel.snp.bottom).offset(4)
+            $0.top.equalTo(forkLabel.snp.bottom).offset(6)
         }
         
         starImageView.snp.makeConstraints {
@@ -127,9 +140,15 @@ extension RepositoriesTableViewCell {
             $0.centerY.equalTo(starImageView.snp.centerY)
         }
         
-        languageLabel.snp.makeConstraints {
+        languageImageView.snp.makeConstraints {
+            $0.width.height.equalTo(24)
             $0.left.equalTo(starGazersCountLabel.snp.right).offset(8)
-            $0.centerY.equalTo(starGazersCountLabel.snp.centerY)
+            $0.centerY.equalTo(starImageView.snp.centerY)
+        }
+        
+        languageLabel.snp.makeConstraints {
+            $0.left.equalTo(languageImageView.snp.right).offset(4)
+            $0.centerY.equalTo(starImageView.snp.centerY)
         }
     }
 }

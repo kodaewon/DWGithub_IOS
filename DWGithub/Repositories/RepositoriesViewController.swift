@@ -44,7 +44,7 @@ class RepositoriesViewController: BaseViewController {
 extension RepositoriesViewController {
     func binds() {
         let viewWillReload = rx.viewWillAppear
-            .take(1)
+//            .take(1)
             .map { _ in () }
         
         Observable.merge([viewWillReload])
@@ -57,9 +57,10 @@ extension RepositoriesViewController {
                 cell.nameLabel.text = item.full_name
                 cell.privateLabel.text = item.isPrivate ? "  Private  " : "  Public  "
                 cell.descriptionLabel.text = item.description
-                cell.languageLabel.text = item.language
                 cell.forkLabel.text = item.fork ? item.forks_url : ""
                 cell.starGazersCountLabel.text = "\(item.stargazers_count)"
+                cell.languageImageView.image = UIImage(named: item.language.image)
+                cell.languageLabel.text = item.language.description
                 
             }.disposed(by: disposeBag)
     }

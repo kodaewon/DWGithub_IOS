@@ -66,6 +66,7 @@ class SettingTableViewCell: UITableViewCell {
 // MARK: - update
 extension SettingTableViewCell {
     func update(_ type: SettingTableViewCellType) {
+        accessoryType = .none
         infoLabel.isHidden = true
         toggleSwitch.isHidden = true
         
@@ -74,8 +75,8 @@ extension SettingTableViewCell {
             infoLabel.isHidden = false
         case .toggle:
             toggleSwitch.isHidden = false
-        default:
-            return
+        case .normal:
+            accessoryType = .disclosureIndicator
         }
     }
 }

@@ -19,6 +19,12 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for family in UIFont.familyNames {
+            for font in UIFont.fontNames(forFamilyName: family) {
+                print("font = \(font)")
+            }
+        }
+        
         if let token = UserDefaults.standard.object(forKey: USER_TOKEN) as? String {
             GitHubAPI.userInfo(token: token) { (userInfo) in
                 guard let userInfo = userInfo else {
@@ -27,6 +33,7 @@ class SplashViewController: UIViewController {
                 }
                 
                 UserInfo.shared = userInfo
+                UserInfo.shared.token = token
                 self.goMain()
             }
         } else {

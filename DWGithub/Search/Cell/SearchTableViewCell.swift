@@ -16,7 +16,8 @@ class SearchTableViewCell: UITableViewCell {
     let repoIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .red
+        imageView.image = UIImage(named: "work")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = .text
         return imageView
     }()
     
@@ -25,6 +26,7 @@ class SearchTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
+        label.font = .bold(21)
         label.textColor = .text
         label.text = ""
         return label
@@ -35,6 +37,7 @@ class SearchTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 3
         label.lineBreakMode = .byTruncatingTail
+        label.font = .regular(17)
         label.textColor = .text
         label.text = ""
         return label
@@ -42,7 +45,7 @@ class SearchTableViewCell: UITableViewCell {
     
     let starImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .blue
+        imageView.image = UIImage(named: "star")
         return imageView
     }()
     
@@ -51,9 +54,16 @@ class SearchTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 1
         label.lineBreakMode = .byWordWrapping
+        label.font = .regular(13)
         label.textColor = .text
         label.text = ""
         return label
+    }()
+    
+    let languageImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "search")
+        return imageView
     }()
     
     let languageLabel: UILabel = {
@@ -61,6 +71,8 @@ class SearchTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 1
         label.lineBreakMode = .byWordWrapping
+        label.font = .regular(13)
+        label.textColor = .text
         label.text = ""
         return label
     }()
@@ -85,7 +97,7 @@ class SearchTableViewCell: UITableViewCell {
 // MARK: - setup
 extension SearchTableViewCell {
     func setupViews() {
-        addAutoLayoutSubViews([repoIconImageView, fullNameLabel, descriptionLabel, starImageView, starGazersCountLabel, languageLabel])
+        addAutoLayoutSubViews([repoIconImageView, fullNameLabel, descriptionLabel, starImageView, starGazersCountLabel, languageImageView, languageLabel])
         
         repoIconImageView.snp.makeConstraints {
             $0.width.height.equalTo(24)
@@ -107,7 +119,7 @@ extension SearchTableViewCell {
         }
         
         starImageView.snp.makeConstraints {
-            $0.width.height.equalTo(18)
+            $0.width.height.equalTo(16)
             $0.left.equalTo(descriptionLabel.snp.left)
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(8)
             $0.bottom.equalToSuperview().offset(-12)
@@ -118,9 +130,15 @@ extension SearchTableViewCell {
             $0.centerY.equalTo(starImageView.snp.centerY)
         }
         
-        languageLabel.snp.makeConstraints {
+        languageImageView.snp.makeConstraints {
+            $0.width.height.equalTo(24)
             $0.left.equalTo(starGazersCountLabel.snp.right).offset(8)
-            $0.centerY.equalTo(starGazersCountLabel.snp.centerY)
+            $0.centerY.equalTo(starImageView.snp.centerY)
+        }
+        
+        languageLabel.snp.makeConstraints {
+            $0.left.equalTo(languageImageView.snp.right).offset(4)
+            $0.centerY.equalTo(starImageView.snp.centerY)
         }
     }
 }

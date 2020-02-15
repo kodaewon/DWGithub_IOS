@@ -102,7 +102,8 @@ extension SearchViewController {
                 cell.fullNameLabel.text = item.full_name
                 cell.descriptionLabel.text = item.name
                 cell.starGazersCountLabel.text = "\(item.stargazers_count)"
-                cell.languageLabel.text = item.language
+                cell.languageImageView.image = UIImage(named: item.language.image)
+                cell.languageLabel.text = item.language.description
             }
             .disposed(by: disposeBag)
     }

@@ -13,7 +13,7 @@ class JandiView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = .background
         
         setupViews()
     }

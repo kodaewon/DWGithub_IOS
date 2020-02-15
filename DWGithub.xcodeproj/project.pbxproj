@@ -53,6 +53,7 @@
 		4C6B0A4A23B10A4400275077 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6B0A4923B10A4400275077 /* MainTabBarController.swift */; };
 		4C6DB25823EAA41D007F15E5 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DB25723EAA41D007F15E5 /* SearchViewModel.swift */; };
 		4C6DB25A23EAA5EA007F15E5 /* GitHubSearchRepositoriesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6DB25923EAA5EA007F15E5 /* GitHubSearchRepositoriesAPI.swift */; };
+		4C7904A723F6E93F003A9338 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7904A623F6E93F003A9338 /* Language.swift */; };
 		4CEEB44D23ED411400C712A5 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEEB44C23ED411400C712A5 /* SearchModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +127,7 @@
 		4C6B0A4923B10A4400275077 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		4C6DB25723EAA41D007F15E5 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		4C6DB25923EAA5EA007F15E5 /* GitHubSearchRepositoriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSearchRepositoriesAPI.swift; sourceTree = "<group>"; };
+		4C7904A623F6E93F003A9338 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		4CEEB44C23ED411400C712A5 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		B5E58F852F5C2519E44A86ED /* libPods-DWGithub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DWGithub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD5BD01347843D0FA34CF194 /* Pods-DWGithub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DWGithub.debug.xcconfig"; path = "Target Support Files/Pods-DWGithub/Pods-DWGithub.debug.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		4C41B08223C440F1001B8A0A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4C7904A523F6E92F003A9338 /* Models */,
 				4C34F48623F668F80073AFF6 /* Singletons */,
 				4C41B08323C4413D001B8A0A /* GitHubConstants.swift */,
 				4C34F48923F671500073AFF6 /* Define.swift */,
@@ -433,6 +436,14 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		4C7904A523F6E92F003A9338 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4C7904A623F6E93F003A9338 /* Language.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		9B1C0D56B8269A5911340036 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +659,7 @@
 				4C45C5EA23C2E26800F74EAB /* UIColor+Extension.swift in Sources */,
 				4C45C5FC23C2FCE800F74EAB /* SearchViewController.swift in Sources */,
 				4C45C5E823C2E25A00F74EAB /* UIFont+Extension.swift in Sources */,
+				4C7904A723F6E93F003A9338 /* Language.swift in Sources */,
 				4CEEB44D23ED411400C712A5 /* SearchModel.swift in Sources */,
 				4C45C5E023C2E0BD00F74EAB /* SplashViewController.swift in Sources */,
 				4C45C60E23C3071A00F74EAB /* LoginViewController.swift in Sources */,

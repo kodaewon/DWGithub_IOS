@@ -12,7 +12,7 @@ struct RepositoriesItem: Codable {
     var full_name: String
     var isPrivate: Bool
     var description: String
-    var language: String
+    var language: Language
     var stargazers_count: Int
     var fork: Bool
     var forks: Int
@@ -39,7 +39,7 @@ struct RepositoriesItem: Codable {
         full_name = (try? values.decode(String.self, forKey: .full_name)) ?? ""
         isPrivate = (try? values.decode(Bool.self, forKey: .isPrivate)) ?? false
         description = (try? values.decode(String.self, forKey: .description)) ?? ""
-        language = (try? values.decode(String.self, forKey: .language)) ?? ""
+        language = Language(rawValue: (try? values.decode(String.self, forKey: .language)) ?? "") ?? Language.None
         stargazers_count = (try? values.decode(Int.self, forKey: .stargazers_count)) ?? 0
         fork = (try? values.decode(Bool.self, forKey: .fork)) ?? false
         forks = (try? values.decode(Int.self, forKey: .forks)) ?? 0
