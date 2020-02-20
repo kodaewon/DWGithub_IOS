@@ -17,23 +17,22 @@ extension UIColor {
                   alpha: a)
     }
     
-    convenience init(hex: String) {
-        var colorStr: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
-        if colorStr.hasPrefix("#") && colorStr.count == 7 {
-            colorStr.remove(at: colorStr.startIndex)
-            if let rgb: Int = Int(colorStr, radix: 16) {
-                self.init(
-                    red: CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
-                    green: CGFloat((rgb & 0xFF0000) >> 8) / 255.0,
-                    blue: CGFloat(rgb & 0xFF0000) / 255.0
-                )
-            } else {
-                self.init(red: 0, green: 0, blue: 0)
-            }
-        } else {
-            self.init(red: 0, green: 0, blue: 0)
+    convenience init(hexString: String, alpha: CGFloat = 1.0) {
+        let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let scanner = Scanner(string: hexString)
+        if (hexString.hasPrefix("#")) {
+            scanner.scanLocation = 1
         }
+        var color: UInt32 = 0
+        scanner.scanHexInt32(&color)
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        let red   = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue  = CGFloat(b) / 255.0
+        self.init(red:red, green:green, blue:blue, alpha:alpha)
     }
 }
 
@@ -46,11 +45,25 @@ extension UIColor {
         return .green
     }()
     
+    static var groupBackground: UIColor = {
+        if #available(iOS 13.0, *) {
+            return .systemGroupedBackground
+        }
+        return .groupTableViewBackground
+    }()
+    
     static var background: UIColor = {
         if #available(iOS 13.0, *) {
             return .systemBackground
         }
         return .white
+    }()
+    
+    static var groupText: UIColor = {
+        if #available(iOS 13.0, *) {
+            return .secondaryLabel
+        }
+        return .lightGray
     }()
     
     static var text: UIColor = {

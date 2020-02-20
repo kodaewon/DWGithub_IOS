@@ -10,6 +10,11 @@ struct Contributions: Codable {
     var years: [ContributionsYear]
     var items: [ContributionsItem]
     
+    init() {
+        years = []
+        items = []
+    }
+    
     enum Contributions: String, CodingKey {
         case year = "years"
         case items = "contributions"
@@ -20,5 +25,13 @@ struct Contributions: Codable {
         
         years = (try? values.decode([ContributionsYear].self, forKey: .year)) ?? []
         items = (try? values.decode([ContributionsItem].self, forKey: .items)) ?? []
+    }
+    
+    // MARK: - func
+    func yearOfItems(_ year: String) -> [ContributionsItem] {
+        return items.filter {
+            return $0.date.hasPrefix(year)
+            
+        }
     }
 }

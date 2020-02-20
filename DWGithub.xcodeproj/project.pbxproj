@@ -17,6 +17,10 @@
 		4C37F7D223FC390A006202BB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C37F7D123FC390A006202BB /* String+Extension.swift */; };
 		4C37F7D723FC39D3006202BB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C37F7D923FC39D3006202BB /* Localizable.strings */; };
 		4C3BEBD223FE42D30049D050 /* JandiCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BEBD123FE42D30049D050 /* JandiCollectionCell.swift */; };
+		4C3BEBD523FE4B920049D050 /* JadiCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BEBD423FE4B920049D050 /* JadiCollectionDataSource.swift */; };
+		4C3BEBD723FE4D630049D050 /* JandiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BEBD623FE4D630049D050 /* JandiViewModel.swift */; };
+		4C3BEBD923FE61800049D050 /* JandiCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BEBD823FE61800049D050 /* JandiCollectionHeaderView.swift */; };
+		4C3BEBDB23FE6B8B0049D050 /* JandiContributionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BEBDA23FE6B8B0049D050 /* JandiContributionCollectionCell.swift */; };
 		4C3C6A8F23FCD25A00D00F2E /* UIUserInterfaceStyle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C6A8E23FCD25A00D00F2E /* UIUserInterfaceStyle+Extension.swift */; };
 		4C3C6A9223FD2DF400D00F2E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C6A9123FD2DF400D00F2E /* Constants.swift */; };
 		4C3C6A9523FD33F600D00F2E /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C6A9423FD33F600D00F2E /* FollowViewController.swift */; };
@@ -106,6 +110,10 @@
 		4C37F7D823FC39D3006202BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C37F7DA23FC39D4006202BB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4C3BEBD123FE42D30049D050 /* JandiCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JandiCollectionCell.swift; sourceTree = "<group>"; };
+		4C3BEBD423FE4B920049D050 /* JadiCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JadiCollectionDataSource.swift; sourceTree = "<group>"; };
+		4C3BEBD623FE4D630049D050 /* JandiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JandiViewModel.swift; sourceTree = "<group>"; };
+		4C3BEBD823FE61800049D050 /* JandiCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JandiCollectionHeaderView.swift; sourceTree = "<group>"; };
+		4C3BEBDA23FE6B8B0049D050 /* JandiContributionCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JandiContributionCollectionCell.swift; sourceTree = "<group>"; };
 		4C3C6A8E23FCD25A00D00F2E /* UIUserInterfaceStyle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIUserInterfaceStyle+Extension.swift"; sourceTree = "<group>"; };
 		4C3C6A9123FD2DF400D00F2E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4C3C6A9423FD33F600D00F2E /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +241,14 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		4C3BEBD323FE4B4C0049D050 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				4C3BEBD423FE4B920049D050 /* JadiCollectionDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
 		4C3C6A9023FD2DD800D00F2E /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				4C3BEBD123FE42D30049D050 /* JandiCollectionCell.swift */,
+				4C3BEBD823FE61800049D050 /* JandiCollectionHeaderView.swift */,
+				4C3BEBDA23FE6B8B0049D050 /* JandiContributionCollectionCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -376,7 +394,9 @@
 		4C45C5F823C2F79F00F74EAB /* Jandi */ = {
 			isa = PBXGroup;
 			children = (
+				4C3BEBD323FE4B4C0049D050 /* DataSource */,
 				4C3CB0CA23FAF6030087A636 /* Cell */,
+				4C3BEBD623FE4D630049D050 /* JandiViewModel.swift */,
 				4C45C5FF23C2FCFF00F74EAB /* JandiViewController.swift */,
 				4C45C60723C2FFCD00F74EAB /* JandiView.swift */,
 			);
@@ -793,6 +813,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C3BEBD923FE61800049D050 /* JandiCollectionHeaderView.swift in Sources */,
 				4C45C5EA23C2E26800F74EAB /* UIColor+Extension.swift in Sources */,
 				4C45C5FC23C2FCE800F74EAB /* SearchViewController.swift in Sources */,
 				4C3BEBD223FE42D30049D050 /* JandiCollectionCell.swift in Sources */,
@@ -803,6 +824,7 @@
 				4CEEB44D23ED411400C712A5 /* SearchModel.swift in Sources */,
 				4C3CB0C723FA92690087A636 /* ContributionsYear.swift in Sources */,
 				4C45C5E023C2E0BD00F74EAB /* SplashViewController.swift in Sources */,
+				4C3BEBD723FE4D630049D050 /* JandiViewModel.swift in Sources */,
 				4C37F7CB23FB9FCA006202BB /* MyPageViewController.swift in Sources */,
 				4C45C60E23C3071A00F74EAB /* LoginViewController.swift in Sources */,
 				4C45C60623C2FFB500F74EAB /* RepositoriesView.swift in Sources */,
@@ -817,6 +839,7 @@
 				4C3F670B23EAAFDD001E33FC /* Repositories.swift in Sources */,
 				4C47401023E2D1BF007D02AA /* SearchTableViewCell.swift in Sources */,
 				4C3CB0C923FAEF380087A636 /* ContributionsItem.swift in Sources */,
+				4C3BEBD523FE4B920049D050 /* JadiCollectionDataSource.swift in Sources */,
 				4C45C60023C2FCFF00F74EAB /* JandiViewController.swift in Sources */,
 				4C3C6A9923FD343B00D00F2E /* FollowViewModel.swift in Sources */,
 				4C45C61223C30B2A00F74EAB /* BaseNavigationController.swift in Sources */,
@@ -838,6 +861,7 @@
 				4C47400D23E2B1BE007D02AA /* UIAlertController+Extension.swift in Sources */,
 				4C3C6A9D23FDC40100D00F2E /* FollowModel.swift in Sources */,
 				4C3CB0C323FA8B110087A636 /* GitHubContributionAPI.swift in Sources */,
+				4C3BEBDB23FE6B8B0049D050 /* JandiContributionCollectionCell.swift in Sources */,
 				4C45C60223C2FD0600F74EAB /* SettingViewController.swift in Sources */,
 				4C45E34923B07F6A00A125E7 /* AppDelegate.swift in Sources */,
 				4C45C5E623C2E20F00F74EAB /* UIView+Extension.swift in Sources */,
