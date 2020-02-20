@@ -15,6 +15,7 @@ class SettingView: UIView {
     
     // MARK: - view properties
     let tableView = UITableView(frame: .zero, style: .grouped).then {
+        $0.bounces = false
         $0.sectionHeaderHeight = 40
         $0.rowHeight = UITableView.automaticDimension
         $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
@@ -24,7 +25,6 @@ class SettingView: UIView {
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         backgroundColor = .background
         
         setupViews()
@@ -42,7 +42,7 @@ extension SettingView {
         
         tableView.snp.makeConstraints {
             $0.left.right.bottom.equalToSuperview()
-            $0.top.equalTo(snp.top)
+            $0.top.equalTo(snp.topMargin)
         }
     }
 }

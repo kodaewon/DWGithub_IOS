@@ -1,0 +1,54 @@
+/* 
+  Localizable.strings
+  DWGithub
+
+  Created by 고대원 on 2020/02/19.
+  Copyright © 2020 고대원. All rights reserved.
+*/
+
+// MARK: - A
+// MARK: - B
+// MARK: - C
+"Close" = "Close";
+// MARK: - D
+"Dark Mode" = "Dark Mode";
+// MARK: - E
+// MARK: - F
+"Favorites" = "Favorites";
+"Followers" = "Followers";
+"Following" = "Following";
+// MARK: - G
+"GitHub Login" = "GitHub Login";
+// MARK: - H
+// MARK: - I
+// MARK: - J
+"Jandi" = "Jandi";
+// MARK: - K
+// MARK: - L
+"License" = "License";
+"Light Mode" = "Light Mode";
+"Login" = "Login";
+"LogOut" = "LogOut";
+"LogOut?" = "LogOut?";
+// MARK: - N
+// MARK: - M
+"My Profile" = "My Profile";
+// MARK: - O
+// MARK: - P
+// MARK: - Q
+// MARK: - R
+"Repositories" = "Repositories";
+// MARK: - S
+"Search" = "Search";
+"Service support" = "Service support";
+"Setting" = "Setting";
+"System Mode" = "System Mode";
+// MARK: - T
+// MARK: - U
+// MARK: - V
+"Version information" = "Version information";
+// MARK: - W
+// MARK: - X
+// MARK: - Y
+// MARK: - Z
+

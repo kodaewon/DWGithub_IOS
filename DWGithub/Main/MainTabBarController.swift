@@ -13,6 +13,8 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBar.tintColor = .text
+        
         initTabBar()
     }
 }
@@ -21,13 +23,15 @@ class MainTabBarController: UITabBarController {
 extension MainTabBarController {
     func initTabBar() {
         var tabbarViewControlls: [UIViewController] = []
-        for (title, vc) in [("Search", SearchViewController()),
-                            ("Repositories", RepositoriesViewController()),
-                            ("Jandi", JandiViewController()),
-                            ("Setting", SettingViewController())] as! [(String, UIViewController)] {
+        for (title, imageName, vc) in [("Search".localized(), "tab_search", SearchViewController()),
+                            ("Repositories".localized(), "book", RepositoriesViewController()),
+                            ("Jandi".localized(), "jandi", JandiViewController()),
+                            ("Setting".localized(), "setting", SettingViewController())] as! [(String, String, UIViewController)] {
 
                                 let nc = BaseNavigationController()
+                                nc.navigationBar.tintColor = .tint
                                 nc.title = title
+                                nc.tabBarItem.image = UIImage(named: imageName)
                                 nc.setViewControllers([vc], animated: true)
                                 vc.navigationItem.title = title
                                 tabbarViewControlls.append(nc)

@@ -9,7 +9,6 @@
 import UIKit
 
 class SplashViewController: UIViewController {
-    
     let splashView = SplashView()
 
     override func loadView() {
@@ -19,11 +18,11 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for family in UIFont.familyNames {
-            for font in UIFont.fontNames(forFamilyName: family) {
-                print("font = \(font)")
-            }
-        }
+//        for family in UIFont.familyNames {
+//            for font in UIFont.fontNames(forFamilyName: family) {
+//                print("font = \(font)")
+//            }
+//        }
         
         if let token = UserDefaults.standard.object(forKey: USER_TOKEN) as? String {
             GitHubAPI.userInfo(token: token) { (userInfo) in

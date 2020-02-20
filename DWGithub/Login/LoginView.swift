@@ -16,7 +16,7 @@ class LoginView: UIView {
     // MARK: - view properties
     let gitHubLoginButton = UIButton().then {
         $0.setTitleColor(.black, for: .normal)
-        $0.setTitle("Login", for: .normal)
+        $0.setTitle("Login".localized(), for: .normal)
     }
     
     // MARK: - init

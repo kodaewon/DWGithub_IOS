@@ -20,7 +20,7 @@ class SettingTableViewCell: UITableViewCell {
     // MARK: - view properties
     let stackView = UIStackView().then {
         $0.axis = .horizontal
-        $0.distribution = .fill
+        $0.distribution = .fillProportionally
         $0.spacing = 8
     }
     
@@ -34,7 +34,7 @@ class SettingTableViewCell: UITableViewCell {
     
     let infoLabel = UILabel().then {
         $0.numberOfLines = 1
-        $0.textAlignment = .left
+        $0.textAlignment = .right
         $0.lineBreakMode = .byTruncatingTail
         $0.textColor = .text
         $0.text = ""
@@ -87,8 +87,8 @@ extension SettingTableViewCell {
         addAutoLayoutSubViews([stackView])
         
         stackView.snp.makeConstraints {
-            $0.height.equalTo(48)
-            $0.top.bottom.equalToSuperview().offset(8)
+            $0.top.equalToSuperview().offset(8)
+            $0.bottom.equalToSuperview().offset(-8)
             $0.left.equalToSuperview().offset(16)
             $0.right.equalToSuperview().offset(-16)
         }

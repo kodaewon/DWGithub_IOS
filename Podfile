@@ -2,6 +2,9 @@
 # platform :ios, '9.0'
 
 target 'DWGithub' do
+  pod 'Firebase/Analytics'
+  pod 'Crashlytics'
+  
   pod 'Kingfisher'
   
   pod 'LicensePlist'

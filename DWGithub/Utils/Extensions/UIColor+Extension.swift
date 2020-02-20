@@ -16,6 +16,25 @@ extension UIColor {
                   blue: blue/255,
                   alpha: a)
     }
+    
+    convenience init(hex: String) {
+        var colorStr: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if colorStr.hasPrefix("#") && colorStr.count == 7 {
+            colorStr.remove(at: colorStr.startIndex)
+            if let rgb: Int = Int(colorStr, radix: 16) {
+                self.init(
+                    red: CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
+                    green: CGFloat((rgb & 0xFF0000) >> 8) / 255.0,
+                    blue: CGFloat(rgb & 0xFF0000) / 255.0
+                )
+            } else {
+                self.init(red: 0, green: 0, blue: 0)
+            }
+        } else {
+            self.init(red: 0, green: 0, blue: 0)
+        }
+    }
 }
 
 // MARK: - App Color
@@ -35,6 +54,13 @@ extension UIColor {
     }()
     
     static var text: UIColor = {
+        if #available(iOS 13.0, *) {
+            return .label
+        }
+        return .black
+    }()
+    
+    static var tint: UIColor = {
         if #available(iOS 13.0, *) {
             return .label
         }

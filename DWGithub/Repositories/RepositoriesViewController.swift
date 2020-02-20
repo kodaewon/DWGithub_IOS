@@ -73,13 +73,9 @@ extension RepositoriesViewController {
         
         navigationController?.navigationBar.barTintColor = .background
         
-        navigationItem.title = "Repositories"
+        navigationItem.title = "Repositories".localized()
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
-        if #available(iOS 13.0, *) {
-            navigationController?.navigationBar.largeContentTitle = "Repositories"
-        }
     }
 }

@@ -29,6 +29,12 @@ class UserInfo: NSObject, Codable {
     var bio: String
     var followers: Int
     var following: Int
+    var followers_url: String
+    var following_url: String
+    
+    var requestFollowingURL: String {
+        return following_url.replacingOccurrences(of: "{/other_user}", with: "")
+    }
     
     override init() {
         token = ""
@@ -45,7 +51,8 @@ class UserInfo: NSObject, Codable {
         bio = ""
         followers = 0
         following = 0
-        
+        followers_url = ""
+        following_url = ""
     }
     
     required init(from decoder: Decoder) throws {
@@ -66,6 +73,8 @@ class UserInfo: NSObject, Codable {
         bio = (try? values.decode(String.self, forKey: .bio)) ?? ""
         followers = (try? values.decode(Int.self, forKey: .followers)) ?? 0
         following = (try? values.decode(Int.self, forKey: .following)) ?? 0
+        followers_url = (try? values.decode(String.self, forKey: .followers_url)) ?? ""
+        following_url = (try? values.decode(String.self, forKey: .following_url)) ?? ""
     }
 }
 

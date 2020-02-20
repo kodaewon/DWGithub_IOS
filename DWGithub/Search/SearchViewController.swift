@@ -120,7 +120,7 @@ extension SearchViewController {
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
         if #available(iOS 13.0, *) {
-            navigationController?.navigationBar.largeContentTitle = "Search"
+            navigationController?.navigationBar.largeContentTitle = "Search".localized()
         }
         
         navigationItem.searchController = searchViewController

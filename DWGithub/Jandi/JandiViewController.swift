@@ -8,10 +8,12 @@
 
 import UIKit
 
-class JandiViewController: UIViewController {
+class JandiViewController: BaseViewController {
     
+    // MARK: - view properties
     let jandiView = JandiView()
     
+    // MARK: - life cycle
     override func loadView() {
         view = jandiView
     }
@@ -20,6 +22,12 @@ class JandiViewController: UIViewController {
         super.viewDidLoad()
 
         setupNavigation()
+        
+        GitHubService().contributions(username: "kodaewon")
+            .subscribe(onNext: { item in
+                print("contributions = \(item.items.count)")
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -30,13 +38,9 @@ extension JandiViewController {
         
         navigationController?.navigationBar.barTintColor = .background
         
-        navigationItem.title = "Jandi"
+        navigationItem.title = "Jandi".localized()
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
-        if #available(iOS 13.0, *) {
-            navigationController?.navigationBar.largeContentTitle = "Jandi"
-        }
     }
 }

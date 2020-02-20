@@ -7,7 +7,25 @@
 		<key>DWGithub.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>29</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>4C45E34423B07F6A00A125E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C45E35A23B07F6A00A125E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C45E36523B07F6A00A125E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

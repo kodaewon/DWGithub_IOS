@@ -37,6 +37,7 @@ class RepositoriesViewModel: RepositoriesViewModelType {
         fetchRepositories = fetch.asObserver()
         
         fetch
+            .debug()
             .subscribe(onNext: {
                 search.onNext(())
             })

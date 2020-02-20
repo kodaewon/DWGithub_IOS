@@ -77,4 +77,25 @@ final class GitHubService: GitHubServiceType {
             return Disposables.create()
         }
     }
+    
+    func contributions(username: String) -> Observable<Contributions> {
+        return Observable<Contributions>.create { observable in
+            let provider = MoyaProvider<GitHubContributionAPI>()
+            provider.request(.getContributino(username: username)) { (result) in
+                switch result {
+                case .success(let response):
+                    guard let data = try? JSONDecoder().decode(Contributions.self, from: response.data) else {
+                        observable.onError(NSError(domain: "", code: 1, userInfo: nil))
+                        return
+                    }
+                    
+                    observable.onNext(data)
+                case .failure(_):
+                    observable.onError(NSError(domain: "", code: 1, userInfo: nil))
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
 }

@@ -14,7 +14,7 @@ import Then
 class RepositoriesTableViewCell: UITableViewCell {
     // MARK: - view properties
     let verticalStackView = UIStackView().then {
-        $0.axis = .vertical
+        $0.axis = .horizontal
         $0.distribution = .fill
     }
     
@@ -24,6 +24,10 @@ class RepositoriesTableViewCell: UITableViewCell {
         $0.font = .bold(21)
         $0.textColor = .text
         $0.text = ""
+    }
+    
+    let privateView = UIView().then {
+        $0.backgroundColor = .clear
     }
     
     let privateLabel = UILabel().then {
@@ -101,29 +105,34 @@ class RepositoriesTableViewCell: UITableViewCell {
 // MARK: - setup
 extension RepositoriesTableViewCell {
     func setupViews() {
-        addAutoLayoutSubViews([verticalStackView, nameLabel, privateLabel, forkLabel, descriptionLabel, starImageView, starGazersCountLabel, languageImageView, languageLabel])
-
-        nameLabel.snp.makeConstraints {
-            $0.height.equalTo(32)
+        addAutoLayoutSubViews([verticalStackView, forkLabel, descriptionLabel, starImageView, starGazersCountLabel, languageImageView, languageLabel])
+        
+        verticalStackView.snp.makeConstraints {
             $0.left.equalToSuperview().offset(16)
+            $0.right.equalToSuperview().offset(-16)
             $0.top.equalToSuperview().offset(8)
         }
-
+        verticalStackView.addArrangedSubview(nameLabel)
+        verticalStackView.addArrangedSubview(privateView)
+        
+        privateView.snp.makeConstraints {
+            $0.width.equalTo(50)
+        }
+        
+        privateView.addAutoLayoutSubViews([privateLabel])
         privateLabel.snp.makeConstraints {
-            $0.height.equalTo(21)
-            $0.left.equalTo(nameLabel.snp.right).offset(8)
-//            $0.right.equalToSuperview().offset(16)
-            $0.centerY.equalTo(nameLabel.snp.centerY)
+            $0.height.equalTo(24)
+            $0.left.top.equalToSuperview()
         }
         
         forkLabel.snp.makeConstraints {
-            $0.left.equalTo(nameLabel.snp.left)
+            $0.left.equalTo(verticalStackView.snp.left)
             $0.right.equalToSuperview().offset(-16)
-            $0.top.equalTo(nameLabel.snp.bottom).offset(6)
+            $0.top.equalTo(verticalStackView.snp.bottom).offset(6)
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.left.equalTo(nameLabel.snp.left)
+            $0.left.equalTo(forkLabel.snp.left)
             $0.right.equalToSuperview().offset(16)
             $0.top.equalTo(forkLabel.snp.bottom).offset(6)
         }

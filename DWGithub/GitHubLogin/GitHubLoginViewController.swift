@@ -70,7 +70,7 @@ extension GitHubLoginViewController {
                     return
                 }
                 
-                print("urlString = \(urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))")
+                print("urlString = \(String(describing: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)))")
                 
                 if urlString.contains("https://github.com/kodaewon?code=") {
                     let urlStrings = urlString.replacingOccurrences(of: "https://github.com/kodaewon?code=", with: "").components(separatedBy: "&")
@@ -126,9 +126,9 @@ extension GitHubLoginViewController {
     func initNavigationBar() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         
-        navigationItem.title = "GitHubLogin"
+        navigationItem.title = "GitHub Login".localized()
         
-        let closeButton = UIBarButtonItem(title: "Close",
+        let closeButton = UIBarButtonItem(title: "Close".localized(),
                                           style: .done,
                                           target: self,
                                           action: #selector(closeDidTap))
