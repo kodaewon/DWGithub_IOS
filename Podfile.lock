@@ -69,9 +69,9 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.5.1):
     - GoogleUtilities/Logger
-  - Kingfisher (5.13.0):
-    - Kingfisher/Core (= 5.13.0)
-  - Kingfisher/Core (5.13.0)
+  - Kingfisher (5.13.1):
+    - Kingfisher/Core (= 5.13.1)
+  - Kingfisher/Core (5.13.1)
   - LicensePlist (2.13.0)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
@@ -101,6 +101,7 @@ PODS:
   - Then (2.6.0)
 
 DEPENDENCIES:
+  - Alamofire
   - Crashlytics
   - Firebase/Analytics
   - Kingfisher
@@ -161,7 +162,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 47fe3b8e1673e5187dfd615656a3c5034f150d69
   GoogleDataTransportCCTSupport: 36f69887fd212db6d7ef4dd45ba44523717a434e
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
-  Kingfisher: 0d334cada987fcddbe9b5cec516406e1ee9d4748
+  Kingfisher: f33a848445e33c543620812158dc5d47f6bf90df
   LicensePlist: a5395002c74b45c38bb8661374f5608534f0f5a7
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -175,6 +176,6 @@ SPEC CHECKSUMS:
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
 
-PODFILE CHECKSUM: 219c9b6a6f23d2f798dbe6514b1995eab79277d9
+PODFILE CHECKSUM: 30ea386a5d27764b0e808c7f0e856dab905ae9c9
 
 COCOAPODS: 1.8.4

@@ -12,8 +12,8 @@ protocol JandiViewModelType {
     var fetchContribution: AnyObserver<String> { get }
     var fetchDetailContribution: AnyObserver<IndexPath> { get }
     
-    var contributionStream: Observable<Contributions> { get }
-    var contributionDetailStream: Observable<IndexPath> { get }
+    var contributionStream: Observable<[ParsingContribution]> { get }
+    var contributionDetailStream: Observable<ParsingContribution> { get }
 }
 
 class JandiViewModel: JandiViewModelType {
@@ -23,26 +23,29 @@ class JandiViewModel: JandiViewModelType {
     var fetchContribution: AnyObserver<String>
     var fetchDetailContribution: AnyObserver<IndexPath>
     
-    var contributionStream: Observable<Contributions>
-    var contributionDetailStream: Observable<IndexPath>
+    var contributionStream: Observable<[ParsingContribution]>
+    var contributionDetailStream: Observable<ParsingContribution>
     
     init(_ domain: GitHubService = GitHubService()) {
         let fetch = PublishSubject<String>()
         let fetchDetail = PublishSubject<IndexPath>()
         
-        let contribution = PublishSubject<Contributions>()
-        var contributionDetail = PublishSubject<IndexPath>()
+        let contribution = PublishSubject<[ParsingContribution]>()
+        let contributionDetail = PublishSubject<ParsingContribution>()
         
         fetchContribution = fetch.asObserver()
         fetchDetailContribution = fetchDetail.asObserver()
         
         fetch
-            .flatMap { domain.contributions(username: $0) }
+            .flatMap { domain.parsingContributions(username: $0) }
             .subscribe(onNext: contribution.onNext)
             .disposed(by: disposeBag)
         
         fetchDetail
             .distinctUntilChanged()
+            .withLatestFrom(contribution) { (indexPath, items) -> ParsingContribution in
+                return items[indexPath.row]
+            }
             .subscribe(onNext: contributionDetail.onNext)
             .disposed(by: disposeBag)
         

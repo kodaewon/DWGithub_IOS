@@ -17,7 +17,7 @@ class SplashView: UIView {
     let appNameLabel = UILabel().then {
         $0.font = .bold(15)
         $0.textColor = .text
-        $0.text = "DWGithub"
+        $0.text = "나만의 깃헙"
     }
     
     // MARK: - init

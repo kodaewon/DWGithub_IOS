@@ -1,6 +1,8 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
+use_frameworks!
+
 target 'DWGithub' do
   pod 'Firebase/Analytics'
   pod 'Crashlytics'
@@ -20,4 +22,11 @@ target 'DWGithub' do
   pod 'SwiftLint'
 
   pod 'Then'
+
+end
+
+target 'Widget' do
+
+  pod 'Alamofire'
+
 end

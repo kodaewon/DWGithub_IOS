@@ -13,6 +13,9 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let service = GitHubService()
+//        service.parsingContribution(username: "kodaewon")
+        
         tabBar.tintColor = .text
         
         initTabBar()

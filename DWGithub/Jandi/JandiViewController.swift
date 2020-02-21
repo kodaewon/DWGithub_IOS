@@ -54,7 +54,7 @@ extension JandiViewController {
             .subscribeOn(MainScheduler.instance)
             .subscribe(onNext: { data in
                 if var section = self.sections.first, var item = section.items.first {
-                    item.item = data
+                    item.items = data
                     section.items[0] = item
                     self.sections[0] = section
                 }
@@ -66,9 +66,20 @@ extension JandiViewController {
             .disposed(by: disposeBag)
         
         viewModel.contributionDetailStream
-            .subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: { indexPath in
-                print("indexPath = \(indexPath)")
+            .subscribe(onNext: { item in
+                let sectionOfItem = SectionOfJadiItem(header: "My Contribution Detail".localized(), items: [
+                    JandiItem(title: "b", item: item, items: [])
+                ])
+                
+                if self.sections.count > 1 {
+                    self.sections[1] = sectionOfItem
+                } else {
+                    self.sections.append(sectionOfItem)
+                }
+                
+                Observable.just(self.sections)
+                    .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
+                    .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
     }
@@ -78,11 +89,20 @@ extension JandiViewController {
 extension JandiViewController {
     func setupCollectionView() {
         dataSource = RxCollectionViewSectionedReloadDataSource<SectionOfJadiItem>(configureCell: { dataSource, collectionView, indexPath, item in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JandiCollectionCell.identifier, for: indexPath) as! JandiCollectionCell
-            cell.update(item.item)
-            cell.collectionView.rx.itemSelected
-                .bind(to: self.viewModel.fetchDetailContribution)
-                .disposed(by: cell.disposeBag)
+            if indexPath.section == 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JandiCollectionCell.identifier, for: indexPath) as! JandiCollectionCell
+                cell.update(item.items)
+                cell.collectionView.rx.itemSelected
+                    .bind(to: self.viewModel.fetchDetailContribution)
+                    .disposed(by: cell.disposeBag)
+                return cell
+            }
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JandiDetailCollectionCell.identifier, for: indexPath) as! JandiDetailCollectionCell
+            if let item = item.item {
+                cell.dateLabel.text = "DATE : \(item.date)"
+                cell.countLabel.text = "COUNT : \(item.count)"
+            }
             return cell
         })
         
@@ -93,8 +113,8 @@ extension JandiViewController {
         }
         
         sections = [
-            SectionOfJadiItem(header: "My", items: [
-                JandiItem(title: "a", item: Contributions())
+            SectionOfJadiItem(header: "My Contribution".localized(), items: [
+                JandiItem(title: "a", item: nil, items: [])
             ])
         ]
         

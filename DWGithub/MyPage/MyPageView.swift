@@ -39,7 +39,8 @@ extension MyPageView {
         addAutoLayoutSubViews([tableView])
         
         tableView.snp.makeConstraints {
-            $0.top.left.right.bottom.equalToSuperview()
+            $0.left.right.bottom.equalToSuperview()
+            $0.top.equalTo(snp.topMargin)
         }
     }
 }

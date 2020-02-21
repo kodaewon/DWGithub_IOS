@@ -29,7 +29,7 @@ class MyPageViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        
         navigationController?.navigationItem.largeTitleDisplayMode = .never
         
         navigationItem.title = "My Profile".localized()

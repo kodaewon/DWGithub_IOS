@@ -16,6 +16,11 @@ import SnapKit
 class JandiCollectionCell: UICollectionViewCell {
     
     // MARK: - view properties
+    let indicatorView = UIActivityIndicatorView().then {
+        $0.color = .baisc
+        $0.isHidden = true
+    }
+    
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
         if let layout = $0.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
@@ -25,9 +30,12 @@ class JandiCollectionCell: UICollectionViewCell {
             $0.collectionViewLayout = layout
         }
         
-        $0.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        $0.showsVerticalScrollIndicator = false
+        $0.showsHorizontalScrollIndicator = false
+        $0.contentInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         $0.backgroundColor = .white
         $0.bounces = false
+        $0.isHidden = false
         
         $0.register(JandiContributionCollectionCell.self, forCellWithReuseIdentifier: JandiContributionCollectionCell.identifier)
     }
@@ -35,7 +43,7 @@ class JandiCollectionCell: UICollectionViewCell {
     // MARK: - properties
     var disposeBag = DisposeBag()
     
-    var items: [ContributionsItem] = []
+    var items: [ParsingContribution] = []
     
     static let identifier = "JandiCollectionCell"
     
@@ -59,9 +67,9 @@ class JandiCollectionCell: UICollectionViewCell {
     }
     
     // MARK: - update
-    func update(_ item: Contributions) {
-        items = item.yearOfItems("2020")
-        items.reverse()
+    func update(_ items: [ParsingContribution]) {
+        self.items = items
+//        items.reverse()
         collectionView.reloadData()
     }
 }
@@ -97,7 +105,11 @@ extension JandiCollectionCell: UICollectionViewDataSource {
 // MARK: - setup
 extension JandiCollectionCell {
     func setupView() {
-        addAutoLayoutSubViews([collectionView])
+        addAutoLayoutSubViews([indicatorView, collectionView])
+        
+        indicatorView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
         
         collectionView.snp.makeConstraints {
             $0.top.left.right.bottom.equalToSuperview()

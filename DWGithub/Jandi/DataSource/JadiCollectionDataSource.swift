@@ -10,7 +10,8 @@ import RxDataSources
 
 struct JandiItem {
     var title = ""
-    var item: Contributions
+    var item: ParsingContribution?
+    var items: [ParsingContribution]
 }
 
 struct SectionOfJadiItem {

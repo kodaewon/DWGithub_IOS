@@ -17,6 +17,7 @@ struct RepositoriesItem: Codable {
     var fork: Bool
     var forks: Int
     var forks_url: String
+    var html_url: String
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -29,6 +30,7 @@ struct RepositoriesItem: Codable {
         case fork = "fork"
         case forks = "forks"
         case forks_url = "forks_url"
+        case html_url = "html_url"
     }
     
     init(from decoder: Decoder) throws {
@@ -44,6 +46,7 @@ struct RepositoriesItem: Codable {
         fork = (try? values.decode(Bool.self, forKey: .fork)) ?? false
         forks = (try? values.decode(Int.self, forKey: .forks)) ?? 0
         forks_url = (try? values.decode(String.self, forKey: .forks_url)) ?? ""
+        html_url = (try? values.decode(String.self, forKey: .html_url)) ?? ""
     }
 }
 

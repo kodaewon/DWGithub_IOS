@@ -99,6 +99,11 @@ extension GitHubLoginViewController {
                                 return
                             }
                             
+                            if let groupUserDefault = UserDefaults(suiteName: "group.DWGitHub") {
+                                groupUserDefault.set(userInfo.login, forKey: "login")
+                                groupUserDefault.synchronize()
+                            }
+                            
                             UserDefaults.standard.set(token, forKey: USER_TOKEN)
                             UserDefaults.standard.synchronize()
                             

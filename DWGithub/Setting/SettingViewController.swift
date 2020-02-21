@@ -40,8 +40,6 @@ class SettingViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        
         let url = URL(string: userInfo.avatar_url)
         profileImageView.kf.setImage(with: url)
         

@@ -19,13 +19,14 @@ class JandiView: UIView {
             layout.scrollDirection = .vertical
             let width = UIScreen.main.bounds.width
             layout.headerReferenceSize = CGSize(width: width, height: 40)
-            layout.itemSize = CGSize(width: width, height: 125)
+            layout.itemSize = CGSize(width: width, height: 145)
         }
         
         $0.backgroundColor = .groupBackground
 
         $0.register(JandiCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: JandiCollectionHeaderView.identifier)
         $0.register(JandiCollectionCell.self, forCellWithReuseIdentifier: JandiCollectionCell.identifier)
+        $0.register(JandiDetailCollectionCell.self, forCellWithReuseIdentifier: JandiDetailCollectionCell.identifier)
     }
     
     // MARK: - init

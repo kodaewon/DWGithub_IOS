@@ -98,4 +98,18 @@ final class GitHubService: GitHubServiceType {
             return Disposables.create()
         }
     }
+    
+    func parsingContributions(username: String) -> Observable<[ParsingContribution]> {
+        return Observable<[ParsingContribution]>.create { observable in
+            self.parsingContribution(username: username) { (item) in
+                if let item = item {
+                    observable.onNext(item)
+                }else {
+                    observable.onError(NSError(domain: "", code: 1, userInfo: nil))
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
 }

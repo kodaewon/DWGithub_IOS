@@ -12,10 +12,12 @@ protocol SearchViewModelType {
     var fetchRepositoies: AnyObserver<Void> { get }
     var searchTextChange: AnyObserver<String> { get }
     var tableViewWillDisplayCell: AnyObserver<IndexPath> { get }
+    var selectTableView: AnyObserver<IndexPath> { get }
     
     var searchModel: Observable<(model: SearchModel, inc: Int)> { get }
     var actived: Observable<Bool> { get }
     var allRepositories: Observable<[RepositoriesItem]> { get }
+    var repoDetailOpen: Observable<String> { get }
 }
 
 class SearchViewModel: SearchViewModelType {
@@ -25,23 +27,28 @@ class SearchViewModel: SearchViewModelType {
     var fetchRepositoies: AnyObserver<Void>
     var searchTextChange: AnyObserver<String>
     var tableViewWillDisplayCell: AnyObserver<IndexPath>
+    var selectTableView: AnyObserver<IndexPath>
     
     var searchModel: Observable<(model: SearchModel, inc: Int)>
     var actived: Observable<Bool>
     var allRepositories: Observable<[RepositoriesItem]>
+    var repoDetailOpen: Observable<String>
     
     init(_ domain: GitHubService = GitHubService()) {
         let fetching = PublishSubject<Void>()
         let searchText = PublishSubject<String>()
         let willDisplayCell = PublishSubject<IndexPath>()
+        let select = PublishSubject<IndexPath>()
         
         let search = BehaviorSubject<(model: SearchModel, inc: Int)>(value: (model: SearchModel(), inc: 0))
         let activing = BehaviorSubject<Bool>(value: false)
         let allRepo = BehaviorSubject<[RepositoriesItem]>(value: [])
+        let repoOpen = PublishSubject<String>()
             
         fetchRepositoies = fetching.asObserver()
         searchTextChange = searchText.asObserver()
         tableViewWillDisplayCell = willDisplayCell.asObserver()
+        selectTableView = select.asObserver()
         
         fetching
             .map { (model: SearchModel(q: "", page: 1, items: []), inc : 0) }
@@ -74,9 +81,17 @@ class SearchViewModel: SearchViewModelType {
             })
             .disposed(by: disposeBag)
         
+        select
+            .withLatestFrom(allRepo) { (indexPath, repos) -> String in
+                return repos[indexPath.row].html_url
+            }
+            .subscribe(onNext: repoOpen.onNext)
+            .disposed(by: disposeBag)
+        
         searchModel = search.asObserver()
         actived = activing.asObservable()
         allRepositories = allRepo.asObserver()
+        repoDetailOpen = repoOpen.asObserver()
         
         search
             .do(onNext: { _ in activing.onNext(false) })
@@ -87,5 +102,6 @@ class SearchViewModel: SearchViewModelType {
             }
             .subscribe(onNext: allRepo.onNext)
             .disposed(by: disposeBag)
+        
     }
 }

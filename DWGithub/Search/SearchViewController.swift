@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 import Moya
 
@@ -80,6 +81,10 @@ extension SearchViewController {
             .bind(to: viewModel.tableViewWillDisplayCell)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.selectTableView)
+            .disposed(by: disposeBag)
+        
         // Output
         viewModel.actived
             .subscribe(onNext: { actived in
@@ -106,6 +111,18 @@ extension SearchViewController {
                 cell.languageLabel.text = item.language.description
             }
             .disposed(by: disposeBag)
+        
+        viewModel.repoDetailOpen
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { urlString in
+                if let url = URL(string: urlString) {
+                    let vc = SFSafariViewController(url: url)
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
+            })
+            .disposed(by: disposeBag)
+        
     }
 }
 

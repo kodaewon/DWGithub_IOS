@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 import RxCocoa
 import RxSwift
@@ -50,6 +51,10 @@ extension RepositoriesViewController {
         Observable.merge([viewWillReload])
             .bind(to: viewModel.fetchRepositories)
             .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .bind(to: viewModel.selectTableView)
+            .disposed(by: disposeBag)
     
         viewModel.repositories
             .bind(to: tableView.rx.items(cellIdentifier: RepositoriesTableViewCell.identifier, cellType: RepositoriesTableViewCell.self)) { index, item, cell in
@@ -63,6 +68,17 @@ extension RepositoriesViewController {
                 cell.languageLabel.text = item.language.description
                 
             }.disposed(by: disposeBag)
+        
+        viewModel.repoDetailOpen
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { urlString in
+                if let url = URL(string: urlString) {
+                    let vc = SFSafariViewController(url: url)
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
