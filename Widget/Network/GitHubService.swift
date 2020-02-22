@@ -6,18 +6,11 @@
 //  Copyright © 2020 고대원. All rights reserved.
 //
 
-import Alamofire
+import Moya
+
  
 class GitHubService {
-    let url = "https://github.com/"
-    
     init() {
         
-    }
-    
-    func parsingContribution(username: String, completion: @escaping (([ParsingContribution]?) -> Void)) {
-        let path = "users/\(username)/contributions"
-        
-//        Alamofire.request
     }
 }

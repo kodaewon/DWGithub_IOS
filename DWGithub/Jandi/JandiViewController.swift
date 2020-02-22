@@ -12,6 +12,8 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 
+import Alamofire
+
 class JandiViewController: BaseViewController {
     
     // MARK: - view properties
@@ -25,7 +27,7 @@ class JandiViewController: BaseViewController {
     let userInfo = UserInfo.shared
     
     var dataSource: RxCollectionViewSectionedReloadDataSource<SectionOfJadiItem>!
-    var sections: [SectionOfJadiItem] = []
+    var sections: BehaviorRelay<[SectionOfJadiItem]> = BehaviorRelay(value: [])
     
     // MARK: - life cycle
     override func loadView() {
@@ -53,15 +55,10 @@ extension JandiViewController {
         viewModel.contributionStream
             .subscribeOn(MainScheduler.instance)
             .subscribe(onNext: { data in
-                if var section = self.sections.first, var item = section.items.first {
-                    item.items = data
-                    section.items[0] = item
-                    self.sections[0] = section
-                }
-                
-                Observable.just(self.sections)
-                    .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
-                    .disposed(by: self.disposeBag)
+                let sectionOfItem = SectionOfJadiItem(header: "My Contribution".localized(), items: [
+                    JandiItem(title: "a", item: nil, items: data)
+                ])
+                self.sections.accept([sectionOfItem])
             })
             .disposed(by: disposeBag)
         
@@ -70,16 +67,14 @@ extension JandiViewController {
                 let sectionOfItem = SectionOfJadiItem(header: "My Contribution Detail".localized(), items: [
                     JandiItem(title: "b", item: item, items: [])
                 ])
-                
-                if self.sections.count > 1 {
-                    self.sections[1] = sectionOfItem
+                var sectionValue = self.sections.value
+                if sectionValue.count > 1 {
+                    sectionValue[1] = sectionOfItem
                 } else {
-                    self.sections.append(sectionOfItem)
+                    sectionValue.append(sectionOfItem)
                 }
                 
-                Observable.just(self.sections)
-                    .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
-                    .disposed(by: self.disposeBag)
+                self.sections.accept(sectionValue)
             })
             .disposed(by: disposeBag)
     }
@@ -112,13 +107,8 @@ extension JandiViewController {
             return view
         }
         
-        sections = [
-            SectionOfJadiItem(header: "My Contribution".localized(), items: [
-                JandiItem(title: "a", item: nil, items: [])
-            ])
-        ]
-        
-        Observable.just(sections)
+        sections
+            .asObservable()
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }

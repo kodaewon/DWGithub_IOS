@@ -12,19 +12,41 @@ import NotificationCenter
 class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    let githubService = GitHubService()
+    
+    var items: [ParsingContribution] = []
         
     override func viewDidLoad() {
         super.viewDidLoad()
         extensionContext?.widgetLargestAvailableDisplayMode = .compact
         
-//        if let groupUserDefault = UserDefaults(suiteName: "group.DWGitHub") {
-//            groupUserDefault.object(forKey: "login")
-//        }
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+//        guard let groupUserDefault = UserDefaults(suiteName: "group.DWGitHub"), let login = groupUserDefault.object(forKey: "login") as? String else {
+//            return
+//        }
         
+        githubService.parsingContribution(username: "kodaewon") { (item) in
+            if let item = item {
+                self.items = item
+                
+                if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                    let jandiWidth = CGFloat(self.view.bounds.width / (CGFloat(self.items.count) / 4.7))
+                    layout.itemSize = CGSize(width: jandiWidth, height: jandiWidth)
+                    self.collectionView.collectionViewLayout = layout
+                    
+                    let topPadding = 110 - CGFloat(jandiWidth * 7) - 14
+                    if topPadding > 0 {
+                        self.collectionView.contentInset = UIEdgeInsets(top: topPadding, left: 2, bottom: 2, right: 2)
+                    }
+                }
+                
+                self.collectionView.reloadData()
+            }
+        }
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -46,12 +68,15 @@ extension TodayViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 365
+        return self.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayJandiCollectionViewCell.identifer, for: indexPath) as! TodayJandiCollectionViewCell
-        cell.backgroundColor = .lightGray
+        
+        let item = items[indexPath.row]
+        cell.backgroundColor = UIColor(hexString: item.color)
+        
         return cell
     }
 }

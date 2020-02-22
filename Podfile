@@ -4,6 +4,7 @@
 use_frameworks!
 
 target 'DWGithub' do
+  pod 'Alamofire'
   pod 'Firebase/Analytics'
   pod 'Crashlytics'
   
@@ -27,6 +28,6 @@ end
 
 target 'Widget' do
 
-  pod 'Alamofire'
+  pod 'Moya'
 
 end

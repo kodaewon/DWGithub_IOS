@@ -104,7 +104,7 @@ final class GitHubService: GitHubServiceType {
             self.parsingContribution(username: username) { (item) in
                 if let item = item {
                     observable.onNext(item)
-                }else {
+                } else {
                     observable.onError(NSError(domain: "", code: 1, userInfo: nil))
                 }
             }
