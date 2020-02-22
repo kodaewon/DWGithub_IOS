@@ -100,7 +100,7 @@ extension GitHubLoginViewController {
                             }
                             
                             if let groupUserDefault = UserDefaults(suiteName: "group.DWGitHub") {
-                                groupUserDefault.set(userInfo.login, forKey: "login")
+                                groupUserDefault.setValue(userInfo.login, forKey: "login")
                                 groupUserDefault.synchronize()
                             }
                             

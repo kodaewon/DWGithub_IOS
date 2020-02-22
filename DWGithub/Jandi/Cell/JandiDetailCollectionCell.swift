@@ -27,10 +27,10 @@ class JandiDetailCollectionCell: UICollectionViewCell {
     // MARK: - properties
     static let identifier = "JandiDetailCollectionCell"
     
-    // MARK - init
+    // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = .background
         
         setupViews()
     }

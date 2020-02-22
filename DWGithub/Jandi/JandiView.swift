@@ -23,6 +23,7 @@ class JandiView: UIView {
         }
         
         $0.backgroundColor = .groupBackground
+        $0.bounces = true
 
         $0.register(JandiCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: JandiCollectionHeaderView.identifier)
         $0.register(JandiCollectionCell.self, forCellWithReuseIdentifier: JandiCollectionCell.identifier)

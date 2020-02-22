@@ -54,6 +54,7 @@
 		4C41E5C323F27BC000DDC181 /* RepositoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41E5C223F27BC000DDC181 /* RepositoriesModel.swift */; };
 		4C41E5C523F27FE700DDC181 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41E5C423F27FE700DDC181 /* GitHubAPI.swift */; };
 		4C41E5C723F2807F00DDC181 /* GitHubUserRepositoriesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C41E5C623F2807F00DDC181 /* GitHubUserRepositoriesAPI.swift */; };
+		4C42DF822401726500AA95B4 /* AppServiceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C42DF812401726500AA95B4 /* AppServiceUtils.swift */; };
 		4C4550CC23F4600F00F35DB3 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4550CB23F4600F00F35DB3 /* SettingTableViewCell.swift */; };
 		4C4550CF23F4812700F35DB3 /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C4550CE23F4812700F35DB3 /* images.xcassets */; };
 		4C45C5E023C2E0BD00F74EAB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45C5DF23C2E0BD00F74EAB /* SplashViewController.swift */; };
@@ -183,6 +184,8 @@
 		4C41E5C223F27BC000DDC181 /* RepositoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesModel.swift; sourceTree = "<group>"; };
 		4C41E5C423F27FE700DDC181 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
 		4C41E5C623F2807F00DDC181 /* GitHubUserRepositoriesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserRepositoriesAPI.swift; sourceTree = "<group>"; };
+		4C42DF812401726500AA95B4 /* AppServiceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceUtils.swift; sourceTree = "<group>"; };
+		4C42DF832401871F00AA95B4 /* widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widget.entitlements; sourceTree = "<group>"; };
 		4C4550CB23F4600F00F35DB3 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		4C4550CE23F4812700F35DB3 /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		4C45C5DF23C2E0BD00F74EAB /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -369,6 +372,7 @@
 		4C3E754D23FFF5EC00D1F4ED /* Widget */ = {
 			isa = PBXGroup;
 			children = (
+				4C42DF832401871F00AA95B4 /* widget.entitlements */,
 				4C6EB56F240121B6009D3085 /* Extensions */,
 				4C35A1DF24005454007CE4D5 /* Network */,
 				4C3E754E23FFF5ED00D1F4ED /* TodayViewController.swift */,
@@ -397,6 +401,7 @@
 				4C34F48623F668F80073AFF6 /* Singletons */,
 				4C45C5E323C2E1F700F74EAB /* Extensions */,
 				4C34F48923F671500073AFF6 /* Define.swift */,
+				4C42DF812401726500AA95B4 /* AppServiceUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1009,6 +1014,7 @@
 				4C3CB0C723FA92690087A636 /* ContributionsYear.swift in Sources */,
 				4C45C5E023C2E0BD00F74EAB /* SplashViewController.swift in Sources */,
 				4C3BEBD723FE4D630049D050 /* JandiViewModel.swift in Sources */,
+				4C42DF822401726500AA95B4 /* AppServiceUtils.swift in Sources */,
 				4C37F7CB23FB9FCA006202BB /* MyPageViewController.swift in Sources */,
 				4C45C60E23C3071A00F74EAB /* LoginViewController.swift in Sources */,
 				4C45C60623C2FFB500F74EAB /* RepositoriesView.swift in Sources */,
@@ -1134,6 +1140,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03B4ADC5F2FC494686AC8A02 /* Pods-Widget.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widget/widget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R42JW2NS5S;
 				INFOPLIST_FILE = Widget/Info.plist;
@@ -1154,6 +1161,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AA63B7CBDDCB3CA62C17FA99 /* Pods-Widget.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Widget/widget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R42JW2NS5S;
 				INFOPLIST_FILE = Widget/Info.plist;

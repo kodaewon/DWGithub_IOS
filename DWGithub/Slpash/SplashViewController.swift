@@ -18,17 +18,16 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        for family in UIFont.familyNames {
-//            for font in UIFont.fontNames(forFamilyName: family) {
-//                print("font = \(font)")
-//            }
-//        }
-        
         if let token = UserDefaults.standard.object(forKey: USER_TOKEN) as? String {
             GitHubAPI.userInfo(token: token) { (userInfo) in
                 guard let userInfo = userInfo else {
                     self.goLogin()
                     return
+                }
+                
+                if let groupUserDefault = UserDefaults(suiteName: "group.DWGitHub") {
+                    groupUserDefault.setValue(userInfo.login, forKey: "login")
+                    groupUserDefault.synchronize()
                 }
                 
                 UserInfo.shared = userInfo

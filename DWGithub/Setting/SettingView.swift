@@ -15,7 +15,7 @@ class SettingView: UIView {
     
     // MARK: - view properties
     let tableView = UITableView(frame: .zero, style: .grouped).then {
-        $0.bounces = false
+        $0.bounces = true
         $0.sectionHeaderHeight = 40
         $0.rowHeight = UITableView.automaticDimension
         $0.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)

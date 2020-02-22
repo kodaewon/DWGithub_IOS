@@ -26,6 +26,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = nc
+        
+        // MARK: - 사용자 설정 Interface Mode 설정
+        if #available(iOS 13.0, *) {
+            if let userInterFaceType = UserDefaults.standard.object(forKey: USER_INTERFACEMODE) as? String {
+                if userInterFaceType == "Light Mode".localized() {
+                    window.overrideUserInterfaceStyle = .light
+                } else if userInterFaceType == "Dark Mode".localized() {
+                    window.overrideUserInterfaceStyle = .dark
+                } else {
+                    window.overrideUserInterfaceStyle = .unspecified
+                }
+            }
+        }
+        
         self.window = window
         window.makeKeyAndVisible()
         

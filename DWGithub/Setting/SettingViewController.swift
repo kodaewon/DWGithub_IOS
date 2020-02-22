@@ -72,7 +72,7 @@ extension SettingViewController {
                 SettingItem(title: "Following".localized(), info: "", type: .normal)
             ]),
             SectionOfSettingItem(header: "Service support".localized(), items: [
-                SettingItem(title: "Version information".localized(), info: Constants.appVersion, type: .info),
+                SettingItem(title: "Version information".localized(), info: AppServiceUtils.versionInfo().0, type: .info),
                 SettingItem(title: "License".localized(), info: "", type: .normal)
             ]),
             SectionOfSettingItem(header: " ", items: [
@@ -117,9 +117,10 @@ extension SettingViewController {
                              ("System Mode".localized(), UIUserInterfaceStyle.unspecified)] {
                                 
                                 let action = UIAlertAction(title: title, style: .default) { (action) in
-
                                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                                         appDelegate.window?.overrideUserInterfaceStyle = type
+                                        UserDefaults.standard.set(title, forKey: USER_INTERFACEMODE)
+                                        UserDefaults.standard.synchronize()
                                     }
                                     
                                     if let cell = self.tableView.cellForRow(at: indexPath) as? SettingTableViewCell {
@@ -140,6 +141,12 @@ extension SettingViewController {
                         DispatchQueue.main.async(execute: {
                             self.present(alert, animated: true, completion: nil)
                         })
+                    }
+                } else if indexPath.section == 2 {
+                    if indexPath.row == 0 {
+                        AppServiceUtils.versionUpdate(false)
+                    } else if indexPath.row == 1 {
+                        AppServiceUtils.goSetting()
                     }
                 } else if indexPath.section == 3 {
                     UIAlertController.confirm(parentVC: self, title: "", message: "LogOut?".localized(), okAction: {

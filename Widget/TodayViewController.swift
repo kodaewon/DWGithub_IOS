@@ -25,11 +25,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        guard let groupUserDefault = UserDefaults(suiteName: "group.DWGitHub"), let login = groupUserDefault.object(forKey: "login") as? String else {
-//            return
-//        }
+        guard let groupUserDefault = UserDefaults(suiteName: "group.DWGitHub"),
+            let login = groupUserDefault.value(forKey: "login") as? String else {
+            return
+        }
         
-        githubService.parsingContribution(username: "kodaewon") { (item) in
+        githubService.parsingContribution(username: login) { (item) in
             if let item = item {
                 self.items = item
                 
@@ -40,7 +41,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     
                     let topPadding = 110 - CGFloat(jandiWidth * 7) - 14
                     if topPadding > 0 {
-                        self.collectionView.contentInset = UIEdgeInsets(top: topPadding, left: 2, bottom: 2, right: 2)
+                        self.collectionView.contentInset = UIEdgeInsets(top: topPadding / 2, left: 2, bottom: topPadding / 2, right: 2)
                     }
                 }
                 
