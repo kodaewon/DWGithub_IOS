@@ -4,7 +4,6 @@
 use_frameworks!
 
 target 'DWGithub' do
-  pod 'Alamofire'
   pod 'Firebase/Analytics'
   pod 'Crashlytics'
   
