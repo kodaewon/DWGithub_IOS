@@ -9,6 +9,7 @@
 import UIKit
 
 import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: - Firebase
         FirebaseApp.configure()
+        
+        // MARK: - Google Admob
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         // MARK: - App Start
         let nc = BaseNavigationController()

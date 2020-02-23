@@ -54,6 +54,10 @@ body:
                    …
 version: 4.3.1
 
+name: Google-Mobile-Ads-SDK, nameSpecified: 
+body: Copyright 2020 Googl…
+version: 7.55.1
+
 name: GoogleAppMeasurement, nameSpecified: 
 body: Copyright 2020 Googl…
 version: 6.2.2

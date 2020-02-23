@@ -11,6 +11,8 @@
 // MARK: - C
 "Cancel" = "취소";
 "Close" = "닫기";
+"Coffe a Drink" = "커피 한잔";
+"Contact us" = "문의하기";
 // MARK: - D
 "Dark Mode" = "다크 모드";
 // MARK: - E
@@ -45,6 +47,7 @@
 "Search" = "검색";
 "Service support" = "서비스 지원";
 "Setting" = "설정";
+"Support" = "후원";
 "System Mode" = "시스템 모드";
 // MARK: - T
 // MARK: - U

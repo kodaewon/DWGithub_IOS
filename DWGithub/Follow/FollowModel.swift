@@ -11,6 +11,7 @@ struct FollowModel: Codable {
     var id: Int
     var avatar_url: String
     var url: String
+    var html_url: String
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -19,6 +20,7 @@ struct FollowModel: Codable {
         id = (try? values.decode(Int.self, forKey: .id)) ?? 0
         avatar_url = (try? values.decode(String.self, forKey: .avatar_url)) ?? ""
         url = (try? values.decode(String.self, forKey: .url)) ?? ""
+        html_url = (try? values.decode(String.self, forKey: .html_url)) ?? ""
     }
 }
 

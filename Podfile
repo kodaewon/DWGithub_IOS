@@ -4,8 +4,11 @@
 use_frameworks!
 
 target 'DWGithub' do
-  pod 'Firebase/Analytics'
   pod 'Crashlytics'
+
+  pod 'Firebase/Analytics'
+
+  pod 'Google-Mobile-Ads-SDK'
   
   pod 'Kingfisher'
   

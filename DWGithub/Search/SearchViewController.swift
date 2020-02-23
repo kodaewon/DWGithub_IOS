@@ -9,8 +9,6 @@
 import UIKit
 import SafariServices
 
-import Moya
-
 import RxCocoa
 import RxSwift
 

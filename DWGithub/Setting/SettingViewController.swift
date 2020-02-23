@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 import Kingfisher
 import RxDataSources
@@ -51,6 +52,14 @@ class SettingViewController: BaseViewController {
     }
 }
 
+// MARK: - MFMailComposeViewControllerDelegate
+extension SettingViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+        
+    }
+}
+
 // MARK: - bind
 extension SettingViewController {
     func binds() {
@@ -71,9 +80,13 @@ extension SettingViewController {
                 SettingItem(title: "Followers".localized(), info: "", type: .normal),
                 SettingItem(title: "Following".localized(), info: "", type: .normal)
             ]),
+            SectionOfSettingItem(header: "Support".localized(), items: [
+                SettingItem(title: "Coffe a Drink".localized(), info: "", type: .normal),
+            ]),
             SectionOfSettingItem(header: "Service support".localized(), items: [
                 SettingItem(title: "Version information".localized(), info: AppServiceUtils.versionInfo().0, type: .info),
-                SettingItem(title: "License".localized(), info: "", type: .normal)
+                SettingItem(title: "License".localized(), info: "", type: .normal),
+                SettingItem(title: "Contact us".localized(), info: "", type: .normal)
             ]),
             SectionOfSettingItem(header: " ", items: [
                 SettingItem(title: "LogOut".localized(), info: "", type: .info)
@@ -102,6 +115,7 @@ extension SettingViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
+            .subscribeOn(MainScheduler.instance)
             .subscribe(onNext: { indexPath in
                 if indexPath.section == 0 {
                     let vc = FollowViewController()
@@ -144,9 +158,23 @@ extension SettingViewController {
                     }
                 } else if indexPath.section == 2 {
                     if indexPath.row == 0 {
+                        print("후원하기")
+                    }
+                } else if indexPath.section == 3 {
+                    if indexPath.row == 0 {
                         AppServiceUtils.versionUpdate(false)
                     } else if indexPath.row == 1 {
                         AppServiceUtils.goSetting()
+                    } else if indexPath.row == 2 {
+                        let vc = MFMailComposeViewController()
+                        vc.mailComposeDelegate = self
+                        vc.setToRecipients(["dev.kodaewon@gmail.com"])
+                        vc.setSubject("나만의 깃헙 문의하기")
+                        let message = "\n\nOS Version : \(Constants.osVersion)\nApp Version : \(Constants.appVersion)"
+                        vc.setMessageBody(message, isHTML: false)
+                        if MFMailComposeViewController.canSendMail() {
+                            self.present(vc, animated: true, completion: nil)
+                        }
                     }
                 } else if indexPath.section == 3 {
                     UIAlertController.confirm(parentVC: self, title: "", message: "LogOut?".localized(), okAction: {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 import RxCocoa
 import RxSwift
@@ -32,7 +33,6 @@ class FollowViewController: BaseViewController {
         super.viewDidLoad()
         
         navigationController?.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.navigationBar.prefersLargeTitles = false
         
         bind()
     }
@@ -45,10 +45,24 @@ extension FollowViewController {
             .bind(to: viewModel.fetchFollow)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .bind(to: viewModel.tableViewSelect)
+            .disposed(by: disposeBag)
+        
         viewModel.followers
             .bind(to: tableView.rx.items(cellIdentifier: FollowTableViewCell.identifier, cellType: FollowTableViewCell.self)) { index, item, cell in
                 cell.update(item)
             }
+            .disposed(by: disposeBag)
+        
+        viewModel.userInfoOpen
+            .subscribe(onNext: { urlString in
+                if let url = URL(string: urlString) {
+                    let vc = SFSafariViewController(url: url)
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
+            })
             .disposed(by: disposeBag)
     }
 }

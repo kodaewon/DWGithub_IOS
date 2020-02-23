@@ -13,15 +13,20 @@ class FollowViewModel {
     var disposeBag = DisposeBag()
     
     var fetchFollow: AnyObserver<String>
+    var tableViewSelect: AnyObserver<IndexPath>
     
     var followers: Observable<[FollowModel]>
+    var userInfoOpen: Observable<String>
     
     init(domain: AppService = AppService()) {
         let fetch = PublishSubject<String>()
+        let select = PublishSubject<IndexPath>()
         
         let follow = PublishSubject<[FollowModel]>()
+        let infoOpen = PublishSubject<String>()
         
         fetchFollow = fetch.asObserver()
+        tableViewSelect = select.asObserver()
         
         fetch
             .distinctUntilChanged()
@@ -39,6 +44,14 @@ class FollowViewModel {
             .subscribe(onNext: follow.onNext)
             .disposed(by: disposeBag)
         
+        select
+            .withLatestFrom(follow) { (indexPath, models) -> String in
+                return models[indexPath.row].html_url
+            }
+            .subscribe(onNext: infoOpen.onNext)
+            .disposed(by: disposeBag)
+        
         followers = follow.asObserver()
+        userInfoOpen = infoOpen.asObserver()
     }
 }

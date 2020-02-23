@@ -8,6 +8,7 @@
 
 import UIKit
 
+import GoogleMobileAds
 import Then
 import SnapKit
 
@@ -30,6 +31,12 @@ class JandiView: UIView {
         $0.register(JandiDetailCollectionCell.self, forCellWithReuseIdentifier: JandiDetailCollectionCell.identifier)
     }
     
+    let googleAdmobView = GADBannerView(adSize: kGADAdSizeBanner).then {
+//        ca-app-pub-8586866298429575/3000540349
+        $0.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        $0.isHidden = true
+    }
+    
     // MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,11 +53,16 @@ class JandiView: UIView {
 // MARK: - setup
 extension JandiView {
     func setupViews() {
-        addAutoLayoutSubViews([collectionView])
+        addAutoLayoutSubViews([collectionView, googleAdmobView])
         
         collectionView.snp.makeConstraints {
             $0.left.right.bottom.equalToSuperview()
             $0.top.equalTo(snp.topMargin)
+        }
+        
+        googleAdmobView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(snp.bottomMargin)
         }
     }
 }
