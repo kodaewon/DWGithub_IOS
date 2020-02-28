@@ -8,7 +8,7 @@ Rx, MVVM, SnapKit 에 익숙해지기 위해 깃허브 서비스 테마로
 
 ## Download
 
-[<img width="160" src="https://user-images.githubusercontent.com/11141077/69492534-68667200-0ee7-11ea-8a80-9753c1d9d712.png"/>](https://apps.apple.com/app/id1483376212)
+[<img width="160" src="https://user-images.githubusercontent.com/11141077/69492534-68667200-0ee7-11ea-8a80-9753c1d9d712.png"/>](https://apps.apple.com/app/id)
 
 > 다운로드와 평점은 개발자한테 큰 힘이 됩니다.👍
 

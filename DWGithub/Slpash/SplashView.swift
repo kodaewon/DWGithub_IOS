@@ -12,12 +12,8 @@ import SnapKit
 import Then
 
 class SplashView: UIView {
-    
-    // MARK: - view properties
-    let appNameLabel = UILabel().then {
-        $0.font = .bold(15)
-        $0.textColor = .text
-        $0.text = "나만의 깃헙"
+    let logoImageView = UIImageView().then {
+        $0.image =  UIImage(named: "logo")
     }
     
     // MARK: - init
@@ -35,11 +31,11 @@ class SplashView: UIView {
 // MARK: - setup
 extension SplashView {
     func setupViews() {
-        self.backgroundColor = .white
+        self.backgroundColor = .background
         
-        addAutoLayoutSubViews([appNameLabel])
+        addAutoLayoutSubViews([logoImageView])
         
-        appNameLabel.snp.makeConstraints {
+        logoImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }

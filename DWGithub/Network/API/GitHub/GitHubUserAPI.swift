@@ -63,7 +63,7 @@ extension GitHubUserAPI: TargetType {
         case .getToken(_):
             return nil
         case .userInfo(let token):
-            return ["Authorization": "token \(token)"]
+            return ["Authorization": "Bearer \(token)"]
         }
     }
 }

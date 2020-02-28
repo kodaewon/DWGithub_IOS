@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import StoreKit
 
 import Kingfisher
 import RxDataSources
@@ -27,6 +28,9 @@ class SettingViewController: BaseViewController {
     // MARK: - properties
     private let userInfo = UserInfo.shared
     
+    private var productsRequest: SKProductsRequest?
+    private let productIdentifiers: Set<String> = ["com.kodaewon.DWGitHub.coffeAdrink"]
+    
     // MARK: - lifecycle
     override func loadView() {
         view = settingView
@@ -38,6 +42,13 @@ class SettingViewController: BaseViewController {
         setupNavigation()
         
         binds()
+        
+        if SKPaymentQueue.canMakePayments() {
+            print("된다")
+            productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
+            productsRequest?.delegate = self
+            productsRequest?.start()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +68,21 @@ extension SettingViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
         
+    }
+}
+
+// MARK: - SKProductsRequestDelegate
+extension SettingViewController: SKProductsRequestDelegate {
+    public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+       let products = response.products
+
+       for p in products {
+         print("Found product: \(p.productIdentifier) \(p.localizedTitle) \(p.price.floatValue)")
+       }
+     }
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        print("Found Error: \(error.localizedDescription)")
     }
 }
 

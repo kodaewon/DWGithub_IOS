@@ -28,11 +28,13 @@ class GitHubLoginViewController: BaseViewController {
     
     private let viewModel: GitHubViewModel = GitHubViewModel()
     
+    private let uuidString = UUID().uuidString
+    
     private var githubLoginURL: String { return GitHubAPI.loginAuthURL +
                                         "?client_id="+GitHubConstans.clientID +
                                         "&scope"+GitHubConstans.scope +
                                         "&redirect_uri="+GitHubConstans.calbackURL +
-                                        "&state="+"403" }
+                                        "&state="+uuidString }
     
     override func loadView() {
         view = GitHubLoginView()
@@ -72,18 +74,25 @@ extension GitHubLoginViewController {
                 
                 print("urlString = \(String(describing: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)))")
                 
-                if urlString.contains("https://github.com/kodaewon?code=") {
-                    let urlStrings = urlString.replacingOccurrences(of: "https://github.com/kodaewon?code=", with: "").components(separatedBy: "&")
-                    
-                    guard let code = urlStrings.first, code.count > 0 else {
+                if urlString.hasPrefix(GitHubConstans.calbackURL) && urlString.contains("code=") {
+                    guard let range = urlString.range(of: "=") else {
                         self.dismiss(animated: true) {
                             UIAlertController.basicAlert(parentVC: self, title: "", message: "다시 시도해 주세요")
                         }
                         hander(.cancel)
                         return
                     }
+                    let githubCode = urlString[range.upperBound...]
+                    guard let gitHubRange = githubCode.range(of: "&state=") else {
+                        self.dismiss(animated: true) {
+                            UIAlertController.basicAlert(parentVC: self, title: "", message: "다시 시도해 주세요")
+                        }
+                        hander(.cancel)
+                        return
+                    }
+                    let githubCodeFinal = githubCode[..<gitHubRange.lowerBound]
                     
-                    GitHubAPI.getToken(code: code) { (token) in
+                    GitHubAPI.getToken(code: String(githubCodeFinal)) { (token) in
                         guard let token = token else {
                             self.dismiss(animated: true) {
                                 UIAlertController.basicAlert(parentVC: self, title: "", message: "다시 시도해 주세요")

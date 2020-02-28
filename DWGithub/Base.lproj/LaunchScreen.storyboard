@@ -16,17 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나만의 깃헙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7py-rx-ZlL">
-                                <rect key="frame" x="172.5" y="439" width="69" height="18"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="lcj-gS-7AA">
+                                <rect key="frame" x="147" y="388.5" width="120" height="119"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="7py-rx-ZlL" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6tS-l9-Vq5"/>
-                            <constraint firstItem="7py-rx-ZlL" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="w9p-p9-oAp"/>
+                            <constraint firstItem="lcj-gS-7AA" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Qqs-Pi-sEK"/>
+                            <constraint firstItem="lcj-gS-7AA" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="bHY-Gq-EOH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -36,4 +34,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="120" height="119"/>
+    </resources>
 </document>

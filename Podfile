@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# platform :ios, '11.0'
 
 use_frameworks!
 
@@ -26,10 +26,18 @@ target 'DWGithub' do
 
   pod 'Then'
 
-end
+  target 'Widget' do
+    inherit! :search_paths
 
-target 'Widget' do
+    pod 'Moya'
 
-  pod 'Moya'
+  end
+
+  target 'DWGitHubUnitTest' do
+    inherit! :search_paths
+
+    pod 'Firebase/Analytics'
+
+  end
 
 end

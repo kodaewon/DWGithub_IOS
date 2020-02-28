@@ -78,7 +78,6 @@ class UserInfo: NSObject, Codable {
     }
 }
 
-
 //{
 //    "login": "kodaewon",
 //    "id": 26591449,
