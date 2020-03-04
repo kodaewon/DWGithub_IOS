@@ -32,8 +32,10 @@ class JandiView: UIView {
     }
     
     let googleAdmobView = GADBannerView(adSize: kGADAdSizeBanner).then {
-//        ca-app-pub-8586866298429575/3000540349
+        $0.adUnitID = "ca-app-pub-8586866298429575/3000540349"
+        #if DEBUG
         $0.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        #endif
         $0.isHidden = true
     }
     

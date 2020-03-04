@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct Constants {
+    static let appStoreAppleID = "1500232711"
     static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     static let osVersion = UIDevice.current.systemVersion
 }

@@ -25,7 +25,7 @@ class AppServiceUtils {
         
         if isUpdate {
             let okAction = UIAlertAction(title: "확인", style: .default) { (actino) in
-                if let url = URL(string: "itms-apps://itunes.apple.com/app/id1485670880"), UIApplication.shared.canOpenURL(url) {
+                if let url = URL(string: "itms-apps://itunes.apple.com/app/id\(Constants.appStoreAppleID)"), UIApplication.shared.canOpenURL(url) {
                     if #available(iOS 10.0, *) {
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     } else {
@@ -51,7 +51,7 @@ class AppServiceUtils {
     
     static func versionInfo() -> (String, Bool) {
         guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
-            let url = URL(string: "http://itunes.apple.com/lookup?bundleId=com.prime.primeword"),
+            let url = URL(string: "http://itunes.apple.com/lookup?bundleId=com.kodaewon.DWGithub"),
             let data = try? Data(contentsOf: url),
             let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
             let results = json["results"] as? [[String: Any]],

@@ -107,10 +107,11 @@ extension SettingViewController {
                 SettingItem(title: "Following".localized(), info: "", type: .normal)
             ]),
             SectionOfSettingItem(header: "Support".localized(), items: [
-                SettingItem(title: "Coffe a Drink".localized(), info: "", type: .normal),
+                SettingItem(title: "Coffe a Drink".localized(), info: "", type: .normal)
             ]),
             SectionOfSettingItem(header: "Service support".localized(), items: [
-                SettingItem(title: "Version information".localized(), info: AppServiceUtils.versionInfo().0, type: .info),
+                SettingItem(title: "Version information".localized(),
+                            info: AppServiceUtils.versionInfo().0, type: .info),
                 SettingItem(title: "License".localized(), info: "", type: .normal),
                 SettingItem(title: "Contact us".localized(), info: "", type: .normal)
             ]),
@@ -202,7 +203,7 @@ extension SettingViewController {
                             self.present(vc, animated: true, completion: nil)
                         }
                     }
-                } else if indexPath.section == 3 {
+                } else if indexPath.section == 4 {
                     UIAlertController.confirm(parentVC: self, title: "", message: "LogOut?".localized(), okAction: {
                         if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
                             let nc = appDelegate.window?.rootViewController as? UINavigationController {

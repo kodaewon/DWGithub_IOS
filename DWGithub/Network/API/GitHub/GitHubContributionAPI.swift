@@ -60,7 +60,8 @@ extension GitHubService {
         provider.request(.parsingContribution(username: username)) { (result) in
             switch result {
             case .success(let response):
-                guard response.statusCode == 200, var json = String(data: response.data, encoding: .utf8)  else {
+                guard response.statusCode == 200,
+                    var json = String(data: response.data, encoding: .utf8)  else {
                     completion(nil)
                     return
                 }
